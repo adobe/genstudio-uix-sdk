@@ -95,12 +95,12 @@ The `GenerationContext` provides details about the environment for generating an
   };
   ```
 
-- **CustomPrompt**: Custom prompt used for generating content.
+- **AdditionalContext**: Custom prompt used for generating content.
 
   ```typescript
-  type CustomPrompt = {
-    customPromptType: string; // Type of the prompt.
-    customPromptValues: [ Claim ]; // Associated value.
+  type AdditionalContext = {
+    additionalContextType: string; // Type of the prompt.
+    additionalContextValues: [ Claim ]; // Associated value.
   };
   ```
 
@@ -109,7 +109,7 @@ The `GenerationContext` provides details about the environment for generating an
   ```typescript
   type SectionGenerationContext = {
     id: string; // Section ID.
-    customPrompts: Map<string, CustomPrompt<any>>; // Prompts specific to the section.
+    additionalContexts: Map<string, AdditionalContext<any>>; // Prompts specific to the section.
     product: string; // Product associated with the section.
   };
   ```
@@ -122,7 +122,7 @@ The `GenerationContext` provides details about the environment for generating an
     brand: Brand; // Associated brand.
     product: Product; // Associated product.
     persona: Persona; // Associated persona.
-    customPrompts: Map<string, CustomPrompt>; // Prompts for the context.
+    additionalContexts: Map<string, AdditionalContext>; // Prompts for the context.
     sections: SectionGenerationContext[]; // Sections within the context.
   };
   ```
@@ -137,10 +137,10 @@ Single section
   "brand": { "id": "brand-1", "name": "My Modern Brand" },
   "product": { "id": "prod-1", "name": "My Toothpaste" },
   "persona": { "id": "persona-1", "name": "Marketer" },
-  "customPrompts": {
+  "additionalContexts": {
     "claims": {
-      "customPromptType": "claims",
-      "customPromptValues": [
+      "additionalContextType": "claims",
+      "additionalContextValues": [
         {
           "id": "claim-1",
           "description": "Toothpaste can kill 98% of germs."
@@ -166,10 +166,10 @@ Multi-Section
   "sections": [
     {
       "id": "1",
-      "customPrompts": {
+      "additionalContexts": {
         "claims": {
-          "customPromptType": "claims",
-          "customPromptValues": [
+          "additionalContextType": "claims",
+          "additionalContextValues": [
             {
               "id": "claim-1",
               "description": "Toothpaste can kill 98% of germs."
@@ -184,10 +184,10 @@ Multi-Section
     },
     {
       "id": "2",
-      "customPrompts": {
+      "additionalContexts": {
         "claims": {
-          "customPromptType": "claims",
-          "customPromptValues": [
+          "additionalContextType": "claims",
+          "additionalContextValues": [
             {
               "id": "claim-1",
               "description": "Toothpaste can kill 98% of germs."

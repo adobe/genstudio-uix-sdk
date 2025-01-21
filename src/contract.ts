@@ -13,7 +13,11 @@ governing permissions and limitations under the License.
 /* this file defines types and interfaces that are considered as api for extension consumers */
 
 /** Experience */
+/**
+ * Represents the role of a field within an experience.
+ */
 export type FieldRole = {
+  /** The name of the field role. */
   name: string;
 };
 
@@ -70,28 +74,28 @@ export type Claim = {
   id: string;
   description: string;
 };
-export type customPromptValues<T> = {
-  customPromptValues: T[];
+export type AdditionalContextValues<T> = {
+  additionalContextValues: T[];
 };
 
-export enum CustomPromptTypes { 
-    Claims = 'claims'
+export enum AdditionalContextTypes {
+  Claims = "claims",
 }
-export type CustomPrompt<T> = {
-  customPromptType: CustomPromptTypes;
-  customPromptValues: customPromptValues<T>;
+export type AdditionalContext<T> = {
+  additionalContextType: AdditionalContextTypes;
+  additionalContextValues: AdditionalContextValues<T>;
 };
 
 export type SectionGenerationContext = {
   id: string;
-  customPrompts: Map<string, CustomPrompt<any>>;
+  additionalContexts: Map<string, AdditionalContext<any>>;
   product: Product;
 };
 
 export type GenerationContext = {
   id: string;
   channel: Channel;
-  customPrompts?: Map<string, CustomPrompt<any>>;
+  additionalContexts?: Map<string, AdditionalContext<any>>;
   brand: Brand;
   product?: Product;
   persona: Persona;

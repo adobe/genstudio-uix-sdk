@@ -2,9 +2,9 @@
 
 ***
 
-[@adobe/genstudio-uix-sdk](../globals.md) / CustomPromptTypes
+[@adobe/genstudio-uix-sdk](../globals.md) / AdditionalContextTypes
 
-# Enumeration: CustomPromptTypes
+# Enumeration: AdditionalContextTypes
 
 ## Enumeration Members
 

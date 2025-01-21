@@ -19,9 +19,9 @@ import {
   Persona,
   Product,
   Claim,
-  customPromptValues,
-  CustomPromptTypes,
-  CustomPrompt,
+  AdditionalContextValues,
+  AdditionalContextTypes,
+  AdditionalContext,
   SectionGenerationContext,
   GenerationContext,
   AppMetadata,
@@ -180,9 +180,9 @@ describe("contract", () => {
     expect(claim.description).toBe("my description");
   });
 
-  it("should define customPromptValues", () => {
-    const customPromptValues: customPromptValues<Claim> = {
-      customPromptValues: [{
+  it("should define additionalContextValues", () => {
+    const additionalContextValues: AdditionalContextValues<Claim> = {
+      additionalContextValues: [{
         id: "12234",
         description: "my description",
       }, {
@@ -190,49 +190,49 @@ describe("contract", () => {
         description: "my description 2",
       }],
     };
-    expect(customPromptValues).toBeDefined();
-    expect(customPromptValues.customPromptValues[0].id).toBe("12234");
-    expect(customPromptValues.customPromptValues[0].description).toBe(
+    expect(additionalContextValues).toBeDefined();
+    expect(additionalContextValues.additionalContextValues[0].id).toBe("12234");
+    expect(additionalContextValues.additionalContextValues[0].description).toBe(
       "my description"
     );
-    expect(customPromptValues.customPromptValues[1].id).toBe("12235");
-    expect(customPromptValues.customPromptValues[1].description).toBe(
+    expect(additionalContextValues.additionalContextValues[1].id).toBe("12235");
+    expect(additionalContextValues.additionalContextValues[1].description).toBe(
       "my description 2"
     );
   });
-  it("should define customPrompts", () => {
-    const customPromptValues: customPromptValues<Claim> = {
-      customPromptValues: [{
+  it("should define additionalContexts", () => {
+    const additionalContextValues: AdditionalContextValues<Claim> = {
+      additionalContextValues: [{
         id: "12234",
         description: "my description",
       }],
     };
-    const customPrompt: CustomPrompt<any> = {
-      customPromptType: CustomPromptTypes.Claims,
-      customPromptValues: customPromptValues,
+    const additionalContext: AdditionalContext<any> = {
+      additionalContextType: AdditionalContextTypes.Claims,
+      additionalContextValues: additionalContextValues,
     };
-    const customPrompts = new Map<string, CustomPrompt<any>>([
-      ["type", customPrompt],
+    const additionalContexts = new Map<string, AdditionalContext<any>>([
+      ["type", additionalContext],
     ]);
-    expect(customPrompts).toBeDefined();
-    expect(customPrompts.size).toBe(1);
-    expect(customPrompts.get("type")).toBeDefined();
-    expect(customPrompts.get("type")).toEqual(customPrompt);
+    expect(additionalContexts).toBeDefined();
+    expect(additionalContexts.size).toBe(1);
+    expect(additionalContexts.get("type")).toBeDefined();
+    expect(additionalContexts.get("type")).toEqual(additionalContext);
   });
 
   it("should define SectionGenerationContext", () => {
-    const customPromptValues: customPromptValues<Claim> = {
-      customPromptValues: [{
+    const additionalContextValues: AdditionalContextValues<Claim> = {
+      additionalContextValues: [{
         id: "12234",
         description: "my description",
       }],
     };
-    const customPrompt: CustomPrompt<any> = {
-      customPromptType: CustomPromptTypes.Claims,
-      customPromptValues: customPromptValues,
+    const additionalContext: AdditionalContext<any> = {
+      additionalContextType: AdditionalContextTypes.Claims,
+      additionalContextValues: additionalContextValues,
     };
-    const customPrompts = new Map<string, CustomPrompt<any>>([
-      ["type", customPrompt],
+    const additionalContexts = new Map<string, AdditionalContext<any>>([
+      ["type", additionalContext],
     ]);
     const product: Product = {
       id: "1234",
@@ -240,28 +240,28 @@ describe("contract", () => {
     };
     const sectionGenerationContext: SectionGenerationContext = {
       id: "1234",
-      customPrompts: customPrompts,
+      additionalContexts: additionalContexts,
       product: product,
     };
     expect(sectionGenerationContext).toBeDefined();
     expect(sectionGenerationContext.id).toBe("1234");
-    expect(sectionGenerationContext.customPrompts).toEqual(customPrompts);
+    expect(sectionGenerationContext.additionalContexts).toEqual(additionalContexts);
     expect(sectionGenerationContext.product).toEqual(product);
   });
 
   it("should define a single section generationContext", () => {
-    const customPromptValues: customPromptValues<Claim> = {
-      customPromptValues: [{
+    const additionalContextValues: AdditionalContextValues<Claim> = {
+      additionalContextValues: [{
         id: "12234",
         description: "my description",
       }],
     };
-    const customPrompt: CustomPrompt<any> = {
-      customPromptType: CustomPromptTypes.Claims,
-      customPromptValues: customPromptValues,
+    const additionalContext: AdditionalContext<any> = {
+      additionalContextType: AdditionalContextTypes.Claims,
+      additionalContextValues: additionalContextValues,
     };
-    const customPrompts = new Map<string, CustomPrompt<any>>([
-      ["type", customPrompt],
+    const additionalContexts = new Map<string, AdditionalContext<any>>([
+      ["type", additionalContext],
     ]);
     const product: Product = {
       id: "1234",
@@ -282,30 +282,30 @@ describe("contract", () => {
         name: "persona",
       },
       product: product,
-      customPrompts: customPrompts,
+      additionalContexts: additionalContexts,
     };
     expect(generationContext).toBeDefined();
     expect(generationContext.channel).toBeDefined();
     expect(generationContext.brand).toBeDefined();
     expect(generationContext.persona).toBeDefined();
     expect(generationContext.product).toBeDefined();
-    expect(generationContext.customPrompts).toBeDefined();
-    expect(generationContext.customPrompts).toEqual(customPrompts);
+    expect(generationContext.additionalContexts).toBeDefined();
+    expect(generationContext.additionalContexts).toEqual(additionalContexts);
   });
 
   it("should define a multi-section generationContext", () => {
-    const customPromptValues: customPromptValues<Claim> = {
-      customPromptValues: [{
+    const additionalContextValues: AdditionalContextValues<Claim> = {
+      additionalContextValues: [{
         id: "12234",
         description: "my description",
       }],
     };
-    const customPrompt = {
-      customPromptType: CustomPromptTypes.Claims,
-      customPromptValues: customPromptValues,
+    const additionalContext = {
+      additionalContextType: AdditionalContextTypes.Claims,
+      additionalContextValues: additionalContextValues,
     };
-    const customPrompts = new Map<string, CustomPrompt<any>>([
-      ["type", customPrompt],
+    const additionalContexts = new Map<string, AdditionalContext<any>>([
+      ["type", additionalContext],
     ]);
     const product: Product = {
       id: "1234",
@@ -313,7 +313,7 @@ describe("contract", () => {
     };
     const sectionGenerationContext: SectionGenerationContext = {
       id: "1234",
-      customPrompts: customPrompts,
+      additionalContexts: additionalContexts,
       product: product,
     };
     const generationContext: GenerationContext = {

@@ -6,9 +6,13 @@
 
 # Type Alias: GenerationContext
 
-> **GenerationContext**: \{ `brand`: [`Brand`](Brand.md); `channel`: [`Channel`](Channel.md); `customPrompts`: `Map`\<`string`, [`CustomPrompt`](CustomPrompt.md)\<`any`\>\>; `id`: `string`; `persona`: [`Persona`](Persona.md); `product`: [`Product`](Product.md); `sections`: [`SectionGenerationContext`](SectionGenerationContext.md)[]; \}
+> **GenerationContext**: \{ `additionalContexts`: `Map`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>; `brand`: [`Brand`](Brand.md); `channel`: [`Channel`](Channel.md); `id`: `string`; `persona`: [`Persona`](Persona.md); `product`: [`Product`](Product.md); `sections`: [`SectionGenerationContext`](SectionGenerationContext.md)[]; \}
 
 ## Type declaration
+
+### additionalContexts?
+
+> `optional` **additionalContexts**: `Map`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>
 
 ### brand
 
@@ -17,10 +21,6 @@
 ### channel
 
 > **channel**: [`Channel`](Channel.md)
-
-### customPrompts?
-
-> `optional` **customPrompts**: `Map`\<`string`, [`CustomPrompt`](CustomPrompt.md)\<`any`\>\>
 
 ### id
 

@@ -6,13 +6,13 @@
 
 # Type Alias: SectionGenerationContext
 
-> **SectionGenerationContext**: \{ `customPrompts`: `Map`\<`string`, [`CustomPrompt`](CustomPrompt.md)\<`any`\>\>; `id`: `string`; `product`: [`Product`](Product.md); \}
+> **SectionGenerationContext**: \{ `additionalContexts`: `Map`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>; `id`: `string`; `product`: [`Product`](Product.md); \}
 
 ## Type declaration
 
-### customPrompts
+### additionalContexts
 
-> **customPrompts**: `Map`\<`string`, [`CustomPrompt`](CustomPrompt.md)\<`any`\>\>
+> **additionalContexts**: `Map`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>
 
 ### id
 
