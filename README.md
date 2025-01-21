@@ -1,7 +1,7 @@
 # genstudio-uix-sdk
 GenStudio UI Extensibility SDK
 
-**This repo will move to github.com/adobe**
+**This repo is still WIP. Please use caution and reach out to GS team before using**
 
 ## API Documentation
 [API Doc](./doc/api.md)
