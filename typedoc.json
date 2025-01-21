@@ -1,0 +1,21 @@
+{
+    "entryPoints": [
+        "src/index.ts"
+    ],
+    "out": "./docs",
+    "hideGenerator": true,
+    "disableSources": true,
+    "navigationLinks": {
+        "Home": "https://github.com/pages/adobe/genstudio-uix-sdk/"
+    },
+    "expandObjects": true,
+    "expandParameters": true,
+    "plugin": [
+        "typedoc-plugin-zod",
+        "typedoc-plugin-markdown"
+    ],
+    "excludeNotDocumented": true,
+    "excludeNotDocumentedKinds": [
+        "Variable"
+    ]
+}
