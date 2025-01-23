@@ -27,7 +27,6 @@
     "uix",
     "genstudio"
   ],
-  "type": "module",
   "author": "Adobe, Inc,",
   "license": "Apache-2.0",
   "devDependencies": {
