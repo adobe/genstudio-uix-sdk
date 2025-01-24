@@ -24,7 +24,7 @@ import {
   AdditionalContext,
   SectionGenerationContext,
   GenerationContext,
-  AppMetadata,
+  AppMetaData,
   Email,
   Meta,
   Display,
@@ -341,8 +341,8 @@ describe("contract", () => {
     expect(generationContext.sections?.[0]).toEqual(sectionGenerationContext);
   });
 
-  it("should define AppMetadata", () => {
-    const appMetadata: AppMetadata = {
+  it("should define AppMetaData", () => {
+    const appMetaData: AppMetaData = {
         id: "1234",
         label: "label",
         extensionId: "extensionId",
@@ -354,18 +354,18 @@ describe("contract", () => {
             }
         ]
     }
-    expect(appMetadata).toBeDefined();
-    expect(appMetadata.id).toBe("1234");
-    expect(appMetadata.label).toBe("label");
-    expect(appMetadata.iconDataUri).toBe("iconDataUri");
-    expect(appMetadata.supportedChannels).toBeDefined();
-    expect(appMetadata.supportedChannels.length).toBe(1);
-    expect(appMetadata.supportedChannels[0].id).toBe("Email");
-    expect(appMetadata.extensionId).toBe("extensionId");
+    expect(appMetaData).toBeDefined();
+    expect(appMetaData.id).toBe("1234");
+    expect(appMetaData.label).toBe("label");
+    expect(appMetaData.iconDataUri).toBe("iconDataUri");
+    expect(appMetaData.supportedChannels).toBeDefined();
+    expect(appMetaData.supportedChannels.length).toBe(1);
+    expect(appMetaData.supportedChannels[0].id).toBe("Email");
+    expect(appMetaData.extensionId).toBe("extensionId");
   });
 
   it("should use Email, Display, and Meta as a channel", () => {
-    const appMetadata: AppMetadata = {
+    const appMetaData: AppMetaData = {
       id: "1234",
       label: "label",
       extensionId: "extensionId",
@@ -376,19 +376,19 @@ describe("contract", () => {
           Display
       ]
   }
-  expect(appMetadata).toBeDefined();
-  expect(appMetadata.id).toBe("1234");
-  expect(appMetadata.label).toBe("label");
-  expect(appMetadata.iconDataUri).toBe("iconDataUri");
-  expect(appMetadata.supportedChannels).toBeDefined();
-  expect(appMetadata.supportedChannels.length).toBe(3);
-  expect(appMetadata.supportedChannels[0].id).toBe("email");
-  expect(appMetadata.supportedChannels[0].name).toBe("Email");
-  expect(appMetadata.supportedChannels[1].id).toBe("meta");
-  expect(appMetadata.supportedChannels[1].name).toBe("Meta");
-  expect(appMetadata.supportedChannels[2].id).toBe("display");
-  expect(appMetadata.supportedChannels[2].name).toBe("Display");
-  expect(appMetadata.extensionId).toBe("extensionId");
+  expect(appMetaData).toBeDefined();
+  expect(appMetaData.id).toBe("1234");
+  expect(appMetaData.label).toBe("label");
+  expect(appMetaData.iconDataUri).toBe("iconDataUri");
+  expect(appMetaData.supportedChannels).toBeDefined();
+  expect(appMetaData.supportedChannels.length).toBe(3);
+  expect(appMetaData.supportedChannels[0].id).toBe("email");
+  expect(appMetaData.supportedChannels[0].name).toBe("Email");
+  expect(appMetaData.supportedChannels[1].id).toBe("meta");
+  expect(appMetaData.supportedChannels[1].name).toBe("Meta");
+  expect(appMetaData.supportedChannels[2].id).toBe("display");
+  expect(appMetaData.supportedChannels[2].name).toBe("Display");
+  expect(appMetaData.extensionId).toBe("extensionId");
   });
 
 });

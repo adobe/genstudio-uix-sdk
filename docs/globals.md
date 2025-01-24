@@ -12,7 +12,7 @@
 
 - [AdditionalContext](type-aliases/AdditionalContext.md)
 - [AdditionalContextValues](type-aliases/AdditionalContextValues.md)
-- [AppMetadata](type-aliases/AppMetadata.md)
+- [AppMetaData](type-aliases/AppMetaData.md)
 - [Brand](type-aliases/Brand.md)
 - [Channel](type-aliases/Channel.md)
 - [Claim](type-aliases/Claim.md)

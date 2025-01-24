@@ -206,14 +206,14 @@ Multi-Section
 
 ---
 
-### **AppMetadata**
+### **AppMetaData**
 
-The `AppMetadata` type contains metadata about an application, including supported channels.
+The `AppMetaData` type contains metadata about an application, including supported channels.
 
 Use `All` as the channel name to support all availabel channels on the GenStudio environment.
 
 ```typescript
-type AppMetadata = {
+type AppMetaData = {
   id: string; // Unique app ID.
   extensionId: string; // App Extension ID.
   iconDataUri: string; // Datauri of icon SVG.

@@ -101,8 +101,8 @@ export type GenerationContext = {
   persona: Persona;
   sections?: SectionGenerationContext[] | undefined;
 };
-/** App Metadata */
-export type AppMetadata = {
+/** App MetaData */
+export type AppMetaData = {
   id: string;
   extensionId: string;
   iconDataUri: string;
