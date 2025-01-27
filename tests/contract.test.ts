@@ -19,6 +19,7 @@ import {
   Persona,
   Product,
   Claim,
+  AdditionalContextValues,
   AdditionalContextTypes,
   AdditionalContext,
   SectionGenerationContext,
@@ -27,7 +28,6 @@ import {
   Email,
   Meta,
   Display,
-  AdditionalContextValues,
 } from "../src/index";
 
 describe("contract", () => {
