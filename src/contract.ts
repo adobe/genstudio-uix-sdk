@@ -78,9 +78,12 @@ export type Claim = {
 export enum AdditionalContextTypes {
   Claims = "claims",
 }
+
+export type AdditionalContextValues<T> = T[];
+
 export type AdditionalContext<T> = {
   additionalContextType: AdditionalContextTypes;
-  additionalContextValues: T[];
+  additionalContextValues: AdditionalContextValues<T>;
 };
 
 export type SectionGenerationContext = {

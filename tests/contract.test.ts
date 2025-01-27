@@ -27,6 +27,7 @@ import {
   Email,
   Meta,
   Display,
+  AdditionalContextValues,
 } from "../src/index";
 
 describe("contract", () => {
@@ -180,7 +181,7 @@ describe("contract", () => {
   });
 
   it("should define additionalContexts", () => {
-    const additionalContextValues: Claim[] = [{
+    const additionalContextValues: AdditionalContextValues<Claim> = [{
       id: "12234",
       description: "my description",
     }];
@@ -198,7 +199,7 @@ describe("contract", () => {
   });
 
   it("should define SectionGenerationContext", () => {
-    const additionalContextValues: Claim[] = [{
+    const additionalContextValues: AdditionalContextValues<Claim> = [{
       id: "12234",
       description: "my description",
     }];
@@ -225,7 +226,7 @@ describe("contract", () => {
   });
 
   it("should define a single section generationContext", () => {
-    const additionalContextValues: Claim[] = [{
+    const additionalContextValues: AdditionalContextValues<Claim> = [{
       id: "12234",
       description: "my description",
     }];
@@ -267,7 +268,7 @@ describe("contract", () => {
   });
 
   it("should define a multi-section generationContext", () => {
-    const additionalContextValues: Claim[] = [{
+    const additionalContextValues: AdditionalContextValues<Claim> = [{
       id: "12234",
       description: "my description",
     }];
