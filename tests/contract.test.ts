@@ -180,6 +180,28 @@ describe("contract", () => {
     expect(claim.description).toBe("my description");
   });
 
+  it("should define additionalContextValues", () => {
+    const additionalContextValues: AdditionalContextValues<Claim> = [
+      {
+        id: "12234",
+        description: "my description",
+      },
+      {
+        id: "12235",
+        description: "my description 2",
+      }
+    ];
+    expect(additionalContextValues).toBeDefined();
+    expect(additionalContextValues[0].id).toBe("12234");
+    expect(additionalContextValues[0].description).toBe(
+      "my description"
+    );
+    expect(additionalContextValues[1].id).toBe("12235");
+    expect(additionalContextValues[1].description).toBe(
+      "my description 2"
+    );
+  });
+
   it("should define additionalContexts", () => {
     const additionalContextValues: AdditionalContextValues<Claim> = [{
       id: "12234",
