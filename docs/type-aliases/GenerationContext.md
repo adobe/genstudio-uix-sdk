@@ -6,13 +6,13 @@
 
 # Type Alias: GenerationContext
 
-> **GenerationContext**: \{ `additionalContexts`: `Map`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>; `brand`: [`Brand`](Brand.md); `channel`: [`Channel`](Channel.md); `id`: `string`; `persona`: [`Persona`](Persona.md); `product`: [`Product`](Product.md); `sections`: [`SectionGenerationContext`](SectionGenerationContext.md)[]; \}
+> **GenerationContext**: \{ `additionalContexts`: `Record`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>; `brand`: [`Brand`](Brand.md); `channel`: [`Channel`](Channel.md); `id`: `string`; `persona`: [`Persona`](Persona.md); `product`: [`Product`](Product.md); `sections`: [`SectionGenerationContext`](SectionGenerationContext.md)[]; \}
 
 ## Type declaration
 
 ### additionalContexts?
 
-> `optional` **additionalContexts**: `Map`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>
+> `optional` **additionalContexts**: `Record`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>
 
 ### brand
 

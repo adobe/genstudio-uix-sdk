@@ -11,7 +11,6 @@ governing permissions and limitations under the License.
 */
 
 import {
-  Channel,
   Brand,
   Persona,
   Product,
@@ -21,24 +20,9 @@ import {
   AdditionalContext,
   SectionGenerationContext,
   GenerationContext,
-  AppMetaData,
-  Email,
-  Meta,
-  Display,
-} from "../src/index";
+} from "../../../src/types/generationContext/GenerationContext";
 
 describe("contract", () => {
-
-  it("should define Channel", () => {
-    const channel: Channel = {
-      id: "Email",
-      name: "Email",
-    };
-    expect(channel).toBeDefined();
-    expect(channel.id).toBe("Email");
-    expect(channel.name).toBe("Email");
-  });
-
   it("should define Brand", () => {
     const brand: Brand = {
       id: "1243",
@@ -88,24 +72,22 @@ describe("contract", () => {
       {
         id: "12235",
         description: "my description 2",
-      }
+      },
     ];
     expect(additionalContextValues).toBeDefined();
     expect(additionalContextValues[0].id).toBe("12234");
-    expect(additionalContextValues[0].description).toBe(
-      "my description"
-    );
+    expect(additionalContextValues[0].description).toBe("my description");
     expect(additionalContextValues[1].id).toBe("12235");
-    expect(additionalContextValues[1].description).toBe(
-      "my description 2"
-    );
+    expect(additionalContextValues[1].description).toBe("my description 2");
   });
 
   it("should define additionalContexts", () => {
-    const additionalContextValues: AdditionalContextValues<Claim> = [{
-      id: "12234",
-      description: "my description",
-    }];
+    const additionalContextValues: AdditionalContextValues<Claim> = [
+      {
+        id: "12234",
+        description: "my description",
+      },
+    ];
     const additionalContext: AdditionalContext<any> = {
       additionalContextType: AdditionalContextTypes.Claims,
       additionalContextValues: additionalContextValues,
@@ -120,17 +102,19 @@ describe("contract", () => {
   });
 
   it("should define SectionGenerationContext", () => {
-    const additionalContextValues: AdditionalContextValues<Claim> = [{
-      id: "12234",
-      description: "my description",
-    }];
+    const additionalContextValues: AdditionalContextValues<Claim> = [
+      {
+        id: "12234",
+        description: "my description",
+      },
+    ];
     const additionalContext: AdditionalContext<any> = {
       additionalContextType: AdditionalContextTypes.Claims,
       additionalContextValues: additionalContextValues,
     };
-    const additionalContexts = new Map<string, AdditionalContext<any>>([
-      ["type", additionalContext],
-    ]);
+    const additionalContexts: Record<string, AdditionalContext<any>> = {
+      type: additionalContext,
+    };
     const product: Product = {
       id: "1234",
       name: "product",
@@ -142,22 +126,26 @@ describe("contract", () => {
     };
     expect(sectionGenerationContext).toBeDefined();
     expect(sectionGenerationContext.id).toBe("1234");
-    expect(sectionGenerationContext.additionalContexts).toEqual(additionalContexts);
+    expect(sectionGenerationContext.additionalContexts).toEqual(
+      additionalContexts,
+    );
     expect(sectionGenerationContext.product).toEqual(product);
   });
 
   it("should define a single section generationContext", () => {
-    const additionalContextValues: AdditionalContextValues<Claim> = [{
-      id: "12234",
-      description: "my description",
-    }];
+    const additionalContextValues: AdditionalContextValues<Claim> = [
+      {
+        id: "12234",
+        description: "my description",
+      },
+    ];
     const additionalContext: AdditionalContext<any> = {
       additionalContextType: AdditionalContextTypes.Claims,
       additionalContextValues: additionalContextValues,
     };
-    const additionalContexts = new Map<string, AdditionalContext<any>>([
-      ["type", additionalContext],
-    ]);
+    const additionalContexts: Record<string, AdditionalContext<any>> = {
+      type: additionalContext,
+    };
     const product: Product = {
       id: "1234",
       name: "product",
@@ -189,17 +177,19 @@ describe("contract", () => {
   });
 
   it("should define a multi-section generationContext", () => {
-    const additionalContextValues: AdditionalContextValues<Claim> = [{
-      id: "12234",
-      description: "my description",
-    }];
+    const additionalContextValues: AdditionalContextValues<Claim> = [
+      {
+        id: "12234",
+        description: "my description",
+      },
+    ];
     const additionalContext = {
       additionalContextType: AdditionalContextTypes.Claims,
       additionalContextValues: additionalContextValues,
     };
-    const additionalContexts = new Map<string, AdditionalContext<any>>([
-      ["type", additionalContext],
-    ]);
+    const additionalContexts: Record<string, AdditionalContext<any>> = {
+      type: additionalContext,
+    };
     const product: Product = {
       id: "1234",
       name: "product",
@@ -233,55 +223,4 @@ describe("contract", () => {
     expect(generationContext.sections?.length).toBe(1);
     expect(generationContext.sections?.[0]).toEqual(sectionGenerationContext);
   });
-
-  it("should define AppMetaData", () => {
-    const appMetaData: AppMetaData = {
-      id: "1234",
-      label: "label",
-      extensionId: "extensionId",
-      iconDataUri: "iconDataUri",
-      supportedChannels: [
-        {
-          id: "Email",
-          name: "Email"
-        }
-      ]
-    }
-    expect(appMetaData).toBeDefined();
-    expect(appMetaData.id).toBe("1234");
-    expect(appMetaData.label).toBe("label");
-    expect(appMetaData.iconDataUri).toBe("iconDataUri");
-    expect(appMetaData.supportedChannels).toBeDefined();
-    expect(appMetaData.supportedChannels.length).toBe(1);
-    expect(appMetaData.supportedChannels[0].id).toBe("Email");
-    expect(appMetaData.extensionId).toBe("extensionId");
-  });
-
-  it("should use Email, Display, and Meta as a channel", () => {
-    const appMetaData: AppMetaData = {
-      id: "1234",
-      label: "label",
-      extensionId: "extensionId",
-      iconDataUri: "iconDataUri",
-      supportedChannels: [
-        Email,
-        Meta,
-        Display
-      ]
-    }
-    expect(appMetaData).toBeDefined();
-    expect(appMetaData.id).toBe("1234");
-    expect(appMetaData.label).toBe("label");
-    expect(appMetaData.iconDataUri).toBe("iconDataUri");
-    expect(appMetaData.supportedChannels).toBeDefined();
-    expect(appMetaData.supportedChannels.length).toBe(3);
-    expect(appMetaData.supportedChannels[0].id).toBe("email");
-    expect(appMetaData.supportedChannels[0].name).toBe("Email");
-    expect(appMetaData.supportedChannels[1].id).toBe("meta");
-    expect(appMetaData.supportedChannels[1].name).toBe("Meta");
-    expect(appMetaData.supportedChannels[2].id).toBe("display");
-    expect(appMetaData.supportedChannels[2].name).toBe("Display");
-    expect(appMetaData.extensionId).toBe("extensionId");
-  });
-
 });

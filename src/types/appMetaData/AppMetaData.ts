@@ -10,11 +10,14 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-export * from "./types/appMetaData/AppMetaData";
-export * from "./types/channel/Channel";
-export * from "./types/generationContext/GenerationContext";
-export * from "./types/experience/Experience";
-export {
-  ExperienceService,
-  ExperienceError,
-} from "./types/experience/ExperienceService";
+/* this file defines types and interfaces that are considered as api for extension consumers */
+
+import { Channel } from "../channel/Channel";
+/** App MetaData */
+export type AppMetaData = {
+  id: string;
+  extensionId: string;
+  iconDataUri: string;
+  supportedChannels: Channel[];
+  label: string;
+};

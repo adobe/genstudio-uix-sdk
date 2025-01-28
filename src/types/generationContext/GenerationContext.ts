@@ -10,28 +10,10 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
+import { Channel } from "../channel/Channel";
 /* this file defines types and interfaces that are considered as api for extension consumers */
 
 /** Generation Context */
-export const Email: Channel = {
-  id: "email",
-  name: "Email",
-};
-
-export const Meta: Channel = {
-  id: "meta",
-  name: "Meta",
-};
-
-export const Display: Channel = {
-  id: "display",
-  name: "Display",
-};
-
-export type Channel = {
-  id: string;
-  name: string;
-};
 
 export type Brand = {
   id: string;
@@ -65,25 +47,16 @@ export type AdditionalContext<T> = {
 
 export type SectionGenerationContext = {
   id: string;
-  additionalContexts: Map<string, AdditionalContext<any>>;
+  additionalContexts: Record<string, AdditionalContext<any>>;
   product: Product;
 };
 
 export type GenerationContext = {
   id: string;
   channel: Channel;
-  additionalContexts?: Map<string, AdditionalContext<any>>;
+  additionalContexts?: Record<string, AdditionalContext<any>>;
   brand: Brand;
   product?: Product;
   persona: Persona;
-  sections?: SectionGenerationContext[]| undefined;
-};
-
-/** App MetaData */
-export type AppMetaData = {
-  id: string;
-  extensionId: string;
-  iconDataUri: string;
-  supportedChannels: Channel[];
-  label: string;
+  sections?: SectionGenerationContext[] | undefined;
 };

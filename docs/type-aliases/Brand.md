@@ -8,6 +8,8 @@
 
 > **Brand**: \{ `id`: `string`; `name`: `string`; \}
 
+Generation Context
+
 ## Type declaration
 
 ### id
