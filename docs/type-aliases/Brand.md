@@ -16,6 +16,6 @@ Generation Context
 
 > **id**: `string`
 
-### name
+### name?
 
-> **name**: `string`
+> `optional` **name**: `string`

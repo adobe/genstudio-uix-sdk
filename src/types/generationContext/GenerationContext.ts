@@ -17,17 +17,17 @@ import { Channel } from "../channel/Channel";
 
 export type Brand = {
   id: string;
-  name: string;
+  name?: string;
 };
 
 export type Persona = {
   id: string;
-  name: string;
+  name?: string;
 };
 
 export type Product = {
   id: string;
-  name: string;
+  name?: string;
 };
 
 export type Claim = {
@@ -47,16 +47,16 @@ export type AdditionalContext<T> = {
 
 export type SectionGenerationContext = {
   id: string;
-  additionalContexts: Record<string, AdditionalContext<any>>;
-  product: Product;
+  additionalContexts?: Record<string, AdditionalContext<any>>;
+  product?: Product;
 };
 
 export type GenerationContext = {
   id: string;
-  channel: Channel;
+  channel?: Channel;
   additionalContexts?: Record<string, AdditionalContext<any>>;
-  brand: Brand;
+  brand?: Brand;
   product?: Product;
-  persona: Persona;
+  persona?: Persona;
   sections?: SectionGenerationContext[] | undefined;
 };

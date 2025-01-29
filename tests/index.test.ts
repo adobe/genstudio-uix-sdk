@@ -17,6 +17,7 @@ import {
   ExperienceField,
   Channel,
   AppMetaData,
+  AppMetadata,
   GenerationContext,
   Email,
   Meta,
@@ -93,6 +94,21 @@ describe("SDK Exports", () => {
     expect(appMetaData.extensionId).toBe("test");
     expect(appMetaData.iconDataUri).toBe("test");
     expect(appMetaData.supportedChannels).toEqual([Email, Meta, Display]);
+  });
+  it("should export AppMetadata types", () => {
+    const appMetadata: AppMetadata = {
+      id: "test",
+      label: "test",
+      extensionId: "test",
+      iconDataUri: "test",
+      supportedChannels: [Email, Meta, Display],
+    };
+
+    expect(appMetadata.id).toBe("test");
+    expect(appMetadata.label).toBe("test");
+    expect(appMetadata.extensionId).toBe("test");
+    expect(appMetadata.iconDataUri).toBe("test");
+    expect(appMetadata.supportedChannels).toEqual([Email, Meta, Display]);
   });
   it("should export GenerationContext types", () => {
     const brand: Brand = {

@@ -21,3 +21,11 @@ export type AppMetaData = {
   supportedChannels: Channel[];
   label: string;
 };
+
+export type AppMetadata = {
+  id: string;
+  extensionId: string;
+  iconDataUri: string;
+  supportedChannels: Channel[];
+  label: string;
+};

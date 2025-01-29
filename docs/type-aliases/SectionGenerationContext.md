@@ -10,14 +10,14 @@
 
 ## Type declaration
 
-### additionalContexts
+### additionalContexts?
 
-> **additionalContexts**: `Record`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>
+> `optional` **additionalContexts**: `Record`\<`string`, [`AdditionalContext`](AdditionalContext.md)\<`any`\>\>
 
 ### id
 
 > **id**: `string`
 
-### product
+### product?
 
-> **product**: [`Product`](Product.md)
+> `optional` **product**: [`Product`](Product.md)

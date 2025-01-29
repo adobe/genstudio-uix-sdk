@@ -2,11 +2,13 @@
 
 ***
 
-[@adobe/genstudio-uix-sdk](../globals.md) / AppMetadata
+[@adobe/genstudio-uix-sdk](../globals.md) / AppMetaData
 
-# Type Alias: AppMetadata
+# Type Alias: AppMetaData
 
-> **AppMetadata**: \{ `extensionId`: `string`; `iconDataUri`: `string`; `id`: `string`; `label`: `string`; `supportedChannels`: [`Channel`](Channel.md)[]; \}
+> **AppMetaData**: \{ `extensionId`: `string`; `iconDataUri`: `string`; `id`: `string`; `label`: `string`; `supportedChannels`: [`Channel`](Channel.md)[]; \}
+
+App MetaData
 
 ## Type declaration
 

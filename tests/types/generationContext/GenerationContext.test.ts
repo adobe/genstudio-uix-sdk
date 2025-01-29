@@ -223,4 +223,16 @@ describe("contract", () => {
     expect(generationContext.sections?.length).toBe(1);
     expect(generationContext.sections?.[0]).toEqual(sectionGenerationContext);
   });
+
+  it("should define a generationContext with empty values except id", () => {
+    const generationContext: GenerationContext = {
+      id: "1234",
+    };
+    expect(generationContext).toBeDefined();
+    expect(generationContext.id).toBe("1234");
+    expect(generationContext.channel).toBeUndefined();
+    expect(generationContext.brand).toBeUndefined();
+    expect(generationContext.persona).toBeUndefined();
+    expect(generationContext.sections).toBeUndefined();
+  });
 });
