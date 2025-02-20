@@ -17,7 +17,7 @@ import { AdditionalContext, AdditionalContextTypes, Claim } from "./GenerationCo
 export interface CreateApi extends VirtualApi {
   api: {
     create: {
-      updateCustomPrompt: (
+      updateAdditionalContext: (
         extensionId: { id: string },
         contextType: AdditionalContextTypes,
         additionalContext: AdditionalContext<Claim>
@@ -65,7 +65,7 @@ export class GenerationContextService {
     }
     try {
       // @ts-ignore Remote API is handled through postMessage
-      await connection.host.api.create.updateCustomPrompt(extension, contextType, additionalContext);
+      await connection.host.api.create.updateAdditionalContext(extension, contextType, additionalContext);
     } catch (error) {
       throw new GenerationContextError("Failed to set additional context");
     }

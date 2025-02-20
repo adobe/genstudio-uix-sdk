@@ -14,11 +14,11 @@ import { GuestUI } from "@adobe/uix-guest";
 import { CreateApi, GenerationContextService, GenerationContextError } from "../../../src/types/generationContext/GenerationContextService";
 import { AdditionalContextTypes } from "../../../src/types/generationContext/GenerationContext";
 
-const createMockConnection = (updateCustomPromptMock: jest.Mock) => ({
+const createMockConnection = (updateAdditionalContextMock: jest.Mock) => ({
   host: {
     api: {
       create: {
-        updateCustomPrompt: updateCustomPromptMock
+        updateAdditionalContext: updateAdditionalContextMock
       }
     }
   }
@@ -48,10 +48,10 @@ describe("GenerationContextService", () => {
 
   describe("setAdditionalContext", () => {
     it("should set additional context", async () => {
-      const updateCustomPromptMock = jest.fn().mockResolvedValue(undefined);
-      const connection = createMockConnection(updateCustomPromptMock);
+      const updateAdditionalContextMock = jest.fn().mockResolvedValue(undefined);
+      const connection = createMockConnection(updateAdditionalContextMock);
       await GenerationContextService.setAdditionalContext(connection, mockExtension, mockContextType, mockAdditionalContext);
-      expect(updateCustomPromptMock).toHaveBeenCalledWith(mockExtension, mockContextType, mockAdditionalContext);
+      expect(updateAdditionalContextMock).toHaveBeenCalledWith(mockExtension, mockContextType, mockAdditionalContext);
     });
 
     it("should throw GenerationContextError if connection is missing", async () => {
@@ -99,8 +99,8 @@ describe("GenerationContextService", () => {
     
 
     it('should throw GenerationContextError on API failure', async () => {
-      const updateCustomPromptMock = jest.fn().mockRejectedValue(new Error('API Error'));
-      const connection = createMockConnection(updateCustomPromptMock);
+      const updateAdditionalContextMock = jest.fn().mockRejectedValue(new Error('API Error'));
+      const connection = createMockConnection(updateAdditionalContextMock);
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
         mockExtension,
