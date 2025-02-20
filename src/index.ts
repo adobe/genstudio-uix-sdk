@@ -18,3 +18,8 @@ export {
   ExperienceService,
   ExperienceError,
 } from "./types/experience/ExperienceService";
+export {
+  GenerationContextService,
+  GenerationContextError,
+} from "./types/generationContext/GenerationContextService";
+
