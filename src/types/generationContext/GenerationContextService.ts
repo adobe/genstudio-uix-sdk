@@ -17,11 +17,7 @@ import { AdditionalContext, AdditionalContextTypes, AdditionalContextValues, Cla
 export interface CreateApi extends VirtualApi {
   api: {
     create: {
-      updateAdditionalContext: (
-        extensionId: { id: string },
-        contextType: AdditionalContextTypes,
-        additionalContext: AdditionalContext<Claim>
-      ) => Promise<void>;
+      updateAdditionalContext: (additionalContext: AdditionalContext<Claim>) => Promise<void>;
     };
   };
 }
