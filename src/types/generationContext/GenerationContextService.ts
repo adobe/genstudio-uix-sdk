@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 
 import { GuestUI } from "@adobe/uix-guest";
 import { VirtualApi } from "@adobe/uix-core";
-import { AdditionalContext, AdditionalContextTypes, Claim } from "./GenerationContext";
+import { AdditionalContext, AdditionalContextTypes, AdditionalContextValues, Claim } from "./GenerationContext";
 
 export interface CreateApi extends VirtualApi {
   api: {
@@ -45,17 +45,17 @@ export class GenerationContextService {
    */
   static async setAdditionalContext(
     connection: GuestUI<CreateApi>,
-    extension: { id: string },
+    extensionId: string,
     contextType: AdditionalContextTypes,
-    additionalContext: AdditionalContext<Claim>
+    contextValues: AdditionalContextValues<Claim>
   ): Promise<void> {
     const validations: Array<[boolean, string]> = [
       [!connection, "Connection is required to set additional context"],
-      [!extension?.id, "Invalid extension ID"],
+      [!extensionId, "Invalid extension ID"],
       [!contextType, "Context type is required"],
-      [!additionalContext?.additionalContextValues?.length, "Additional context values are required"],
+      [!contextValues.length, "Additional context values are required"],
       [
-        !additionalContext?.additionalContextValues?.every(value => value.id && value.description),
+        contextValues.every(value => value.id && value.description),
         "Invalid context value format"
       ]
     ];
@@ -65,7 +65,7 @@ export class GenerationContextService {
     }
     try {
       // @ts-ignore Remote API is handled through postMessage
-      await connection.host.api.create.updateAdditionalContext(extension, contextType, additionalContext);
+      await connection.host.api.create.updateAdditionalContext(extensionId, contextType, contextValues);
     } catch (error) {
       throw new GenerationContextError("Failed to set additional context");
     }

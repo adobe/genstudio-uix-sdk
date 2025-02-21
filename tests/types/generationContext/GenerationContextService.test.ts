@@ -24,12 +24,12 @@ const createMockConnection = (updateAdditionalContextMock: jest.Mock) => ({
   }
 } as unknown as GuestUI<CreateApi>);
 
-const mockExtension = { id: "test-extension-id" };
+const mockExtensionId = "test-extension-id";
 
 const mockContextType = AdditionalContextTypes.Claims;
 
 const mockAdditionalContext = {
-  extensionId: mockExtension.id,
+  extensionId: mockExtensionId,
   additionalContextType: AdditionalContextTypes.Claims,
   additionalContextValues: [
     { id: "123", description: "test-description" },
@@ -50,15 +50,15 @@ describe("GenerationContextService", () => {
     it("should set additional context", async () => {
       const updateAdditionalContextMock = jest.fn().mockResolvedValue(undefined);
       const connection = createMockConnection(updateAdditionalContextMock);
-      await GenerationContextService.setAdditionalContext(connection, mockExtension, mockContextType, mockAdditionalContext);
-      expect(updateAdditionalContextMock).toHaveBeenCalledWith(mockExtension, mockContextType, mockAdditionalContext);
+      await GenerationContextService.setAdditionalContext(connection, mockExtensionId, mockContextType, mockAdditionalContext);
+      expect(updateAdditionalContextMock).toHaveBeenCalledWith(mockExtensionId, mockContextType, mockAdditionalContext);
     });
 
     it("should throw GenerationContextError if connection is missing", async () => {
       const connection = null;
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
-        mockExtension,
+        mockExtensionId,
         mockContextType,
         mockAdditionalContext
       )).rejects.toThrow(new GenerationContextError('Connection is required to set additional context'));
@@ -68,7 +68,7 @@ describe("GenerationContextService", () => {
       const connection = createMockConnection(jest.fn());
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
-        null as unknown as { id: string },
+        null as unknown as string,
         mockContextType,
         mockAdditionalContext
       )).rejects.toThrow(new GenerationContextError('Invalid extension ID'));
@@ -78,7 +78,7 @@ describe("GenerationContextService", () => {
       const connection = createMockConnection(jest.fn());
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
-        mockExtension,
+        mockExtensionId,
         null as unknown as AdditionalContextTypes,
         mockAdditionalContext
       )).rejects.toThrow(new GenerationContextError('Context type is required'));
@@ -88,7 +88,7 @@ describe("GenerationContextService", () => {
       const connection = createMockConnection(jest.fn());
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
-        mockExtension,
+        mockExtensionId,
         mockContextType,
         {
           ...mockAdditionalContext,
@@ -103,7 +103,7 @@ describe("GenerationContextService", () => {
       const connection = createMockConnection(updateAdditionalContextMock);
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
-        mockExtension,
+        mockExtensionId,
         mockContextType,
         mockAdditionalContext
       )).rejects.toThrow(new GenerationContextError('Failed to set additional context'));

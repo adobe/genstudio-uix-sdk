@@ -12,6 +12,8 @@
 
 - [ExperienceError](classes/ExperienceError.md)
 - [ExperienceService](classes/ExperienceService.md)
+- [GenerationContextError](classes/GenerationContextError.md)
+- [GenerationContextService](classes/GenerationContextService.md)
 
 ## Interfaces
 
