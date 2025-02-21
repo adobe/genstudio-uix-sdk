@@ -80,6 +80,14 @@ describe("GenerationContextService", () => {
       )).rejects.toThrow(new GenerationContextError('Context type is required'));
     });
 
+    it("should throw GenerationContextError if context type is invalid", async () => {
+      const connection = createMockConnection(jest.fn());
+      await expect(GenerationContextService.setAdditionalContext(
+        connection as unknown as GuestUI<CreateApi>,
+        { ...mockAdditionalContext, additionalContextType: "invalid" as unknown as AdditionalContextTypes }
+      )).rejects.toThrow(new GenerationContextError('Invalid context type'));
+    });
+
     it("should throw GenerationContextError if additional context values are missing", async () => {
       const connection = createMockConnection(jest.fn());
       await expect(GenerationContextService.setAdditionalContext(

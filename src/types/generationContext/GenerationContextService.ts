@@ -12,12 +12,12 @@ governing permissions and limitations under the License.
 
 import { GuestUI } from "@adobe/uix-guest";
 import { VirtualApi } from "@adobe/uix-core";
-import { AdditionalContext, Claim } from "./GenerationContext";
+import { AdditionalContext, AdditionalContextTypes } from "./GenerationContext";
 
 export interface CreateApi extends VirtualApi {
   api: {
     create: {
-      updateAdditionalContext: (additionalContext: AdditionalContext<Claim>) => Promise<void>;
+      updateAdditionalContext: (additionalContext: AdditionalContext<any>) => Promise<void>;
     };
   };
 }
@@ -39,15 +39,17 @@ export class GenerationContextService {
    */
   static async setAdditionalContext(
     connection: GuestUI<CreateApi>,
-    additionalContext: AdditionalContext<Claim>
+    additionalContext: AdditionalContext<any>
   ): Promise<void> {
+    const { extensionId, additionalContextType, additionalContextValues } = additionalContext;
     const validations: Array<[boolean, string]> = [
       [!connection, "Connection is required to set additional context"],
-      [!additionalContext.extensionId, "Invalid extension ID"],
-      [!additionalContext.additionalContextType, "Context type is required"],
-      [!additionalContext.additionalContextValues.length, "Additional context values are required"],
+      [!extensionId, "Invalid extension ID"],
+      [!additionalContextType, "Context type is required"],
+      [!Object.values(AdditionalContextTypes).includes(additionalContextType), "Invalid context type"],
+      [!additionalContextValues.length, "Additional context values are required"],
       [
-        !additionalContext.additionalContextValues.every(value => value.id && value.description),
+        !additionalContextValues.every(value => value.id && value.description),
         "Invalid context value format"
       ]
     ];
