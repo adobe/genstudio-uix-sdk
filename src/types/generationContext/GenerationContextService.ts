@@ -37,25 +37,21 @@ export class GenerationContextService {
   /**
    * Sets additional context on the prompt
    * @param connection - The guest connection to the host
-   * @param extensionId - The extension id
-   * @param contextType - The context type
-   * @param additionalContext - The additional context
+   * @param additionalContext - The additional context object
    * @returns void
    * @throws Error if connection is missing
    */
   static async setAdditionalContext(
     connection: GuestUI<CreateApi>,
-    extensionId: string,
-    contextType: AdditionalContextTypes,
-    contextValues: AdditionalContextValues<Claim>
+    additionalContext: AdditionalContext<Claim>
   ): Promise<void> {
     const validations: Array<[boolean, string]> = [
       [!connection, "Connection is required to set additional context"],
-      [!extensionId, "Invalid extension ID"],
-      [!contextType, "Context type is required"],
-      [!contextValues.length, "Additional context values are required"],
+      [!additionalContext.extensionId, "Invalid extension ID"],
+      [!additionalContext.additionalContextType, "Context type is required"],
+      [!additionalContext.additionalContextValues.length, "Additional context values are required"],
       [
-        contextValues.every(value => value.id && value.description),
+        !additionalContext.additionalContextValues.every(value => value.id && value.description),
         "Invalid context value format"
       ]
     ];
@@ -65,7 +61,7 @@ export class GenerationContextService {
     }
     try {
       // @ts-ignore Remote API is handled through postMessage
-      await connection.host.api.create.updateAdditionalContext(extensionId, contextType, contextValues);
+      await connection.host.api.create.updateAdditionalContext(additionalContext);
     } catch (error) {
       throw new GenerationContextError("Failed to set additional context");
     }

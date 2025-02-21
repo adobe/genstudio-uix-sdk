@@ -20,7 +20,7 @@
 
 ### setAdditionalContext()
 
-> `static` **setAdditionalContext**(`connection`: `GuestUI`\<`CreateApi`\>, `extensionId`: `string`, `contextType`: [`Claims`](../enumerations/AdditionalContextTypes.md#claims), `additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<[`Claim`](../type-aliases/Claim.md)\>): `Promise`\<`void`\>
+> `static` **setAdditionalContext**(`connection`: `GuestUI`\<`CreateApi`\>, `additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<[`Claim`](../type-aliases/Claim.md)\>): `Promise`\<`void`\>
 
 Sets additional context on the prompt
 
@@ -32,23 +32,11 @@ Sets additional context on the prompt
 
 The guest connection to the host
 
-##### extensionId
-
-`string`
-
-The extension id
-
-##### contextType
-
-[`Claims`](../enumerations/AdditionalContextTypes.md#claims)
-
-The context type
-
 ##### additionalContext
 
 [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<[`Claim`](../type-aliases/Claim.md)\>
 
-The additional context
+The additional context object
 
 #### Returns
 
