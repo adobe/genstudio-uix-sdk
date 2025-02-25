@@ -17,8 +17,15 @@ export * from "./types/experience/Experience";
 export {
   ExperienceService,
   ExperienceError,
+  RightPanelApi,
 } from "./types/experience/ExperienceService";
 export {
   GenerationContextService,
   GenerationContextError,
+  CreateApi,
 } from "./types/generationContext/GenerationContextService";
+
+export {
+  ExtensionRegistrationService,
+  ExtensionRegistrationError,
+} from "./types/extensionRegistration/ExtenstionRegistration";

@@ -12,13 +12,17 @@
 
 - [ExperienceError](classes/ExperienceError.md)
 - [ExperienceService](classes/ExperienceService.md)
+- [ExtensionRegistrationError](classes/ExtensionRegistrationError.md)
+- [ExtensionRegistrationService](classes/ExtensionRegistrationService.md)
 - [GenerationContextError](classes/GenerationContextError.md)
 - [GenerationContextService](classes/GenerationContextService.md)
 
 ## Interfaces
 
+- [CreateApi](interfaces/CreateApi.md)
 - [Experience](interfaces/Experience.md)
 - [ExperienceField](interfaces/ExperienceField.md)
+- [RightPanelApi](interfaces/RightPanelApi.md)
 
 ## Type Aliases
 

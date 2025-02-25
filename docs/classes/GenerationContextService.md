@@ -20,7 +20,7 @@
 
 ### setAdditionalContext()
 
-> `static` **setAdditionalContext**(`connection`: `GuestUI`\<`CreateApi`\>, `additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<`any`\>): `Promise`\<`void`\>
+> `static` **setAdditionalContext**(`connection`: `GuestUI`\<[`CreateApi`](../interfaces/CreateApi.md)\>, `additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<`any`\>): `Promise`\<`void`\>
 
 Sets additional context on the prompt
 
@@ -28,7 +28,7 @@ Sets additional context on the prompt
 
 ##### connection
 
-`GuestUI`\<`CreateApi`\>
+`GuestUI`\<[`CreateApi`](../interfaces/CreateApi.md)\>
 
 The guest connection to the host
 

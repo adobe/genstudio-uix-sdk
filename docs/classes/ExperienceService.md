@@ -72,7 +72,7 @@ Experience - Converted Experience object
 
 ### getExperiences()
 
-> `static` **getExperiences**(`connection`: `GuestUI`\<`RightPanelApi`\>): `Promise`\<[`Experience`](../interfaces/Experience.md)[]\>
+> `static` **getExperiences**(`connection`: `GuestUI`\<[`RightPanelApi`](../interfaces/RightPanelApi.md)\>): `Promise`\<[`Experience`](../interfaces/Experience.md)[]\>
 
 Fetches experiences from the connection
 
@@ -80,7 +80,7 @@ Fetches experiences from the connection
 
 ##### connection
 
-`GuestUI`\<`RightPanelApi`\>
+`GuestUI`\<[`RightPanelApi`](../interfaces/RightPanelApi.md)\>
 
 The guest connection to the host
 
