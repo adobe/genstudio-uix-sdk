@@ -7,8 +7,7 @@ GenStudio UI Extensibility SDK
 **This repo is still WIP. Please use caution and reach out to GS team before using**
 
 ## API Documentation
-[API Doc](./docs/README.md)
-
+Please refer to the [API Documentation](https://opensource.adobe.com/genstudio-uix-sdk/) for more information.
 ## Usage
 ```
 npm install @adobe/genstudio-uix-sdk

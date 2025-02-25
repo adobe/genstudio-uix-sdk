@@ -27,8 +27,8 @@
     "test:coverage": "jest --coverage",
     "build": "tsc",
     "semantic-release": "semantic-release",
-    "clean": "rm -rf dist docs",
-    "docs": "rm -rf docs && typedoc -githubPages false"
+    "clean": "rm -rf dist docs/api",
+    "docs": "rm -rf docs/api && typedoc -githubPages false"
   },
   "keywords": [
     "uix",
