@@ -59,5 +59,6 @@ export type GenerationContext = {
   brand?: Brand;
   product?: Product;
   persona?: Persona;
+  prompt?: string;
   sections?: SectionGenerationContext[] | undefined;
 };
