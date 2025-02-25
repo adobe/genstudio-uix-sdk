@@ -2,11 +2,11 @@
     "entryPoints": [
         "src/index.ts"
     ],
-    "out": "./docs",
+    "out": "docs/api",
     "hideGenerator": true,
     "disableSources": true,
     "navigationLinks": {
-        "Home": "https://github.com/pages/adobe/genstudio-uix-sdk/"
+        "Home": "https://opensource.adobe.com/genstudio-uix-sdk/"
     },
     "expandObjects": true,
     "expandParameters": true,

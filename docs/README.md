@@ -7,7 +7,7 @@ GenStudio UI Extensibility SDK
 **This repo is still WIP. Please use caution and reach out to GS team before using**
 
 ## API Documentation
-[API Doc](./docs/README.md)
+[API Doc](./api/README.md)
 
 ## Usage
 ```
