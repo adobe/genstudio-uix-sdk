@@ -60,7 +60,8 @@ export class ExperienceService {
         typeof experiences[0] === "object" &&
         experiences[0]?.experienceFields &&
         experiences[0]?.id &&
-        Object.keys(experiences[0]).length === 2
+        experiences[0]?.generationContext &&
+        Object.keys(experiences[0]).length === 3
       ) {
         return experiences;
       }
@@ -79,6 +80,7 @@ export class ExperienceService {
   static convertRawExperienceToExperience(rawExperience: {
     id?: string;
     fields: { [key: string]: any };
+    generationContext?: any;
   }): Experience {
     const experienceFields: Record<string, ExperienceField> = {};
 
@@ -97,6 +99,7 @@ export class ExperienceService {
     return {
       id: rawExperience.id ?? "",
       experienceFields,
+      generationContext: rawExperience.generationContext,
     };
   }
 

@@ -11,6 +11,8 @@ governing permissions and limitations under the License.
 */
 /* this file defines types and interfaces that are considered as Experience api for extension consumers */
 
+import { GenerationContext } from "../generationContext/GenerationContext";
+
 /**
  * Represents an Experience entity in the system.
  * An Experience is a container for various fields that define its characteristics.
@@ -20,6 +22,8 @@ export interface Experience {
     id: string;
     /** Collection of experience fields stored as key-value pairs */
     experienceFields: Record<string, ExperienceField>;
+    /** Metadata associated with the experience */
+    generationContext?: GenerationContext;
 }
 
 /**
