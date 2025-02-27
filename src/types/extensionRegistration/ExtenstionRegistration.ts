@@ -72,6 +72,8 @@ export class ExtensionRegistrationService {
    * @param guestConnection - the guest connection
    */
   static closeAddContextAddOnBar(guestConnection: any) {
+    // support only old api for now
     return guestConnection.host.api.dialogs_context.close();
+    // return guestConnection.host.api.createContextAddOns.closeDialog();
   }
 }
