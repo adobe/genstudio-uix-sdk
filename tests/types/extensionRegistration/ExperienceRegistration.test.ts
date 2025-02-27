@@ -13,42 +13,60 @@ governing permissions and limitations under the License.
 import { ExtensionRegistrationService, ExtensionRegistrationError } from "../../../src/types/extensionRegistration/ExtenstionRegistration";
 
 describe('ExtensionRegistrationService', () => {
-    const mockAppExtensionId = 'test-extension-id';
+  const mockAppExtensionId = 'test-extension-id';
 
-    describe('openCreateAddOnBar', () => {
-      it('should support opening the add on bar', async () => {
-        const mockGuestConnection = {
-          host: {
-            api: {
-              dialogs: {
-                open: jest.fn().mockResolvedValue(undefined)
-              }
+  describe('openCreateAddOnBar', () => {
+    it('should support opening the add on bar', async () => {
+      const mockGuestConnection = {
+        host: {
+          api: {
+            dialogs: {
+              open: jest.fn().mockResolvedValue(undefined)
             }
           }
-        };
-  
-        await ExtensionRegistrationService.openCreateAddOnBar(mockGuestConnection, mockAppExtensionId);
-        
-        expect(mockGuestConnection.host.api.dialogs.open)
-          .toHaveBeenCalledWith(mockAppExtensionId);
-      });
-    });
+        }
+      };
 
-    describe('openAddContextAddOnBar', () => {
-        it('should support opening the add context add on bar', async () => {
-            const mockGuestConnection = {
-                host: {
-                    api: {
-                        dialogs_context: {  
-                            open: jest.fn().mockResolvedValue(undefined)
-                        }
-                    }
-                }
-            };
-            await ExtensionRegistrationService.openAddContextAddOnBar(mockGuestConnection, mockAppExtensionId); 
-            
-            expect(mockGuestConnection.host.api.dialogs_context.open)
-                .toHaveBeenCalledWith(mockAppExtensionId);
-        });
+      await ExtensionRegistrationService.openCreateAddOnBar(mockGuestConnection, mockAppExtensionId);
+
+      expect(mockGuestConnection.host.api.dialogs.open)
+        .toHaveBeenCalledWith(mockAppExtensionId);
     });
+  });
+
+  describe('openAddContextAddOnBar', () => {
+    it('should support opening the add context add on bar', async () => {
+      const mockGuestConnection = {
+        host: {
+          api: {
+            dialogs_context: {
+              open: jest.fn().mockResolvedValue(undefined)
+            }
+          }
+        }
+      };
+      await ExtensionRegistrationService.openAddContextAddOnBar(mockGuestConnection, mockAppExtensionId);
+
+      expect(mockGuestConnection.host.api.dialogs_context.open)
+        .toHaveBeenCalledWith(mockAppExtensionId);
+    });
+  });
+
+  describe('closeAddContextAddOnBar', () => {
+    it('should support closing the add context add on bar', async () => {
+      const mockGuestConnection = {
+        host: {
+          api: {
+            dialogs_context: {
+              close: jest.fn().mockResolvedValue(undefined)
+            }
+          }
+        }
+      };
+      await ExtensionRegistrationService.closeAddContextAddOnBar(mockGuestConnection);
+
+      expect(mockGuestConnection.host.api.dialogs_context.close)
+        .toHaveBeenCalled();
+    });
+  });
 });
