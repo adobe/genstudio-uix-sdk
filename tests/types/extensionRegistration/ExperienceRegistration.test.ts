@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { ExtensionRegistrationService, ExtensionRegistrationError } from "../../../src/types/extensionRegistration/ExtenstionRegistration";
+import { ExtensionRegistrationService } from "../../../src/types/extensionRegistration/ExtenstionRegistration";
 
 describe('ExtensionRegistrationService', () => {
     const mockAppExtensionId = 'test-extension-id';
@@ -33,6 +33,7 @@ describe('ExtensionRegistrationService', () => {
           .toHaveBeenCalledWith(mockAppExtensionId);
       });
       it('should use new API if both APIs are available', async () => {
+        // this mocks UIX SDK guestConnection behavior, where it will gracefully call the path of the api that does not exist
         const mockGuestConnection = {
           host: {
             api: {
@@ -40,7 +41,7 @@ describe('ExtensionRegistrationService', () => {
                 openDialog: jest.fn().mockResolvedValue(undefined)
               },
               dialogs: {
-                open: jest.fn().mockResolvedValue(undefined)
+                open: jest.fn().mockRejectedValue(new Error('Should not use old API'))
               }
             }
           }
@@ -50,20 +51,9 @@ describe('ExtensionRegistrationService', () => {
         
         expect(mockGuestConnection.host.api.createAddOnBar.openDialog)
           .toHaveBeenCalledWith(mockAppExtensionId);
-      });
-      it('should throw an error if no API is available', async () => {
-        const mockGuestConnection = {
-          host: {
-            api: {}
-          }
-        };  
-        try {
-            await ExtensionRegistrationService.openCreateAddOnBar(mockGuestConnection, mockAppExtensionId);
-            fail('Expected an error to be thrown');
-        } catch (error) {
-            expect(error).toBeDefined();
-            expect(error).toBeInstanceOf(ExtensionRegistrationError);
-        }
+        // expect old api to be called and throw an error
+        expect(mockGuestConnection.host.api.dialogs.open)
+            .toHaveBeenCalledWith(mockAppExtensionId);
       });
     });
 
@@ -83,15 +73,16 @@ describe('ExtensionRegistrationService', () => {
             expect(mockGuestConnection.host.api.dialogs_context.open)
                 .toHaveBeenCalledWith(mockAppExtensionId);
         });
-        it('should use new API if both APIs are available', async () => {
+        it('should use new API if only one available', async () => {
+          // this mocks UIX SDK guestConnection behavior, where it will gracefully call the path of the api that does not exist
             const mockGuestConnection = {
                 host: {
                     api: {
                         createContextAddOns: {
                             openDialog: jest.fn().mockResolvedValue(undefined)
                         },
-                        dialogs: {
-                            open: jest.fn().mockResolvedValue(undefined)  
+                        dialogs_context: {
+                            open: jest.fn().mockRejectedValue(new Error('Should not use old API'))
                         }
                     }
                 }
@@ -100,20 +91,9 @@ describe('ExtensionRegistrationService', () => {
             
             expect(mockGuestConnection.host.api.createContextAddOns.openDialog)
                 .toHaveBeenCalledWith(mockAppExtensionId);
-        });
-        it('should throw an error if no API is available', async () => {
-            const mockGuestConnection = {
-                host: {
-                    api: {}
-                }
-            };
-            try {
-                await ExtensionRegistrationService.openAddContextAddOnBar(mockGuestConnection, mockAppExtensionId);
-                fail('Expected an error to be thrown'); 
-            } catch (error) {
-                expect(error).toBeDefined();
-                expect(error).toBeInstanceOf(ExtensionRegistrationError);
-            }
+            // expect old api to be called and throw an error
+            expect(mockGuestConnection.host.api.dialogs_context.open)
+                .toHaveBeenCalledWith(mockAppExtensionId);
         });
     });
 });

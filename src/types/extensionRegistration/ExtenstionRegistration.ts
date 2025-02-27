@@ -50,16 +50,15 @@ export class ExtensionRegistrationService {
             }
      */
     
-  static openCreateAddOnBar(guestConnection: any, appExtensionId: string) {
-    // support old and new api, default to new api
-    if (guestConnection?.host?.api?.createAddOnBar?.openDialog) {
-        return guestConnection.host.api.createAddOnBar.openDialog(`${appExtensionId}`);
-    }
-    // old api:
-    else if (guestConnection?.host?.api?.dialogs?.open) {
-        return guestConnection.host.api.dialogs.open(`${appExtensionId}`);
-    } else {
-        throw new ExtensionRegistrationError("No supported API found");
+  static async openCreateAddOnBar(guestConnection: any, appExtensionId: string) {
+    // support old and new api
+    try {
+        await Promise.allSettled([
+            guestConnection?.host?.api?.createAddOnBar?.openDialog(`${appExtensionId}`),
+            guestConnection?.host?.api?.dialogs?.open(`${appExtensionId}`)
+        ]);
+    } catch (error) {
+        // ignore api that failed
     }
   }
 
@@ -68,16 +67,15 @@ export class ExtensionRegistrationService {
    * @param guestConnection - the guest connection
    * @param appExtensionId - the app extension id
    */
-  static openAddContextAddOnBar(guestConnection: any, appExtensionId: string) {
-    // support old and new api, default to new api      
-    if (guestConnection?.host?.api?.createContextAddOns?.openDialog) {
-        return guestConnection.host.api.createContextAddOns.openDialog(`${appExtensionId}`);
-    }
-    // old api:
-    else if (guestConnection?.host?.api?.dialogs_context?.open) {
-        return guestConnection.host.api.dialogs_context.open(`${appExtensionId}`);
-    } else {
-        throw new ExtensionRegistrationError("No supported API found");
+  static async openAddContextAddOnBar(guestConnection: any, appExtensionId: string) {
+    // support old and new api                 
+    try {
+        await Promise.allSettled([
+            guestConnection?.host?.api?.dialogs_context?.open(`${appExtensionId}`),
+            guestConnection?.host?.api?.createContextAddOns?.openDialog(`${appExtensionId}`)
+        ]);
+    } catch (error) {
+        // ignore api that failed
     }
   }
 }
