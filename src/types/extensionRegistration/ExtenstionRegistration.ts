@@ -51,16 +51,9 @@ export class ExtensionRegistrationService {
      */
     
   static openCreateAddOnBar(guestConnection: any, appExtensionId: string) {
-    // support old and new api, default to new api
-    if (guestConnection?.host?.api?.createAddOnBar?.openDialog) {
-        return guestConnection.host.api.createAddOnBar.openDialog(`${appExtensionId}`);
-    }
-    // old api:
-    else if (guestConnection?.host?.api?.dialogs?.open) {
-        return guestConnection.host.api.dialogs.open(`${appExtensionId}`);
-    } else {
-        throw new ExtensionRegistrationError("No supported API found");
-    }
+    // support only old api for now
+    return guestConnection.host.api.dialogs.open(`${appExtensionId}`);
+    // return guestConnection.host.api.createAddOnBar.openDialog(`${appExtensionId}`);
   }
 
   /**
@@ -69,15 +62,8 @@ export class ExtensionRegistrationService {
    * @param appExtensionId - the app extension id
    */
   static openAddContextAddOnBar(guestConnection: any, appExtensionId: string) {
-    // support old and new api, default to new api      
-    if (guestConnection?.host?.api?.createContextAddOns?.openDialog) {
-        return guestConnection.host.api.createContextAddOns.openDialog(`${appExtensionId}`);
-    }
-    // old api:
-    else if (guestConnection?.host?.api?.dialogs_context?.open) {
-        return guestConnection.host.api.dialogs_context.open(`${appExtensionId}`);
-    } else {
-        throw new ExtensionRegistrationError("No supported API found");
-    }
+    // support only old api for now
+    return guestConnection.host.api.dialogs_context.open(`${appExtensionId}`);
+    // return guestConnection.host.api.createContextAddOns.openDialog(`${appExtensionId}`);
   }
 }

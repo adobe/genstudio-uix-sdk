@@ -16,7 +16,7 @@ describe('ExtensionRegistrationService', () => {
     const mockAppExtensionId = 'test-extension-id';
 
     describe('openCreateAddOnBar', () => {
-      it('should use old API if only one available', async () => {
+      it('should support opening the add on bar', async () => {
         const mockGuestConnection = {
           host: {
             api: {
@@ -32,43 +32,10 @@ describe('ExtensionRegistrationService', () => {
         expect(mockGuestConnection.host.api.dialogs.open)
           .toHaveBeenCalledWith(mockAppExtensionId);
       });
-      it('should use new API if both APIs are available', async () => {
-        const mockGuestConnection = {
-          host: {
-            api: {
-              createAddOnBar: {
-                openDialog: jest.fn().mockResolvedValue(undefined)
-              },
-              dialogs: {
-                open: jest.fn().mockResolvedValue(undefined)
-              }
-            }
-          }
-        };
-  
-        await ExtensionRegistrationService.openCreateAddOnBar(mockGuestConnection, mockAppExtensionId);
-        
-        expect(mockGuestConnection.host.api.createAddOnBar.openDialog)
-          .toHaveBeenCalledWith(mockAppExtensionId);
-      });
-      it('should throw an error if no API is available', async () => {
-        const mockGuestConnection = {
-          host: {
-            api: {}
-          }
-        };  
-        try {
-            await ExtensionRegistrationService.openCreateAddOnBar(mockGuestConnection, mockAppExtensionId);
-            fail('Expected an error to be thrown');
-        } catch (error) {
-            expect(error).toBeDefined();
-            expect(error).toBeInstanceOf(ExtensionRegistrationError);
-        }
-      });
     });
 
     describe('openAddContextAddOnBar', () => {
-        it('should use old API if only one available', async () => {
+        it('should support opening the add context add on bar', async () => {
             const mockGuestConnection = {
                 host: {
                     api: {
@@ -82,38 +49,6 @@ describe('ExtensionRegistrationService', () => {
             
             expect(mockGuestConnection.host.api.dialogs_context.open)
                 .toHaveBeenCalledWith(mockAppExtensionId);
-        });
-        it('should use new API if both APIs are available', async () => {
-            const mockGuestConnection = {
-                host: {
-                    api: {
-                        createContextAddOns: {
-                            openDialog: jest.fn().mockResolvedValue(undefined)
-                        },
-                        dialogs: {
-                            open: jest.fn().mockResolvedValue(undefined)  
-                        }
-                    }
-                }
-            };
-            await ExtensionRegistrationService.openAddContextAddOnBar(mockGuestConnection, mockAppExtensionId); 
-            
-            expect(mockGuestConnection.host.api.createContextAddOns.openDialog)
-                .toHaveBeenCalledWith(mockAppExtensionId);
-        });
-        it('should throw an error if no API is available', async () => {
-            const mockGuestConnection = {
-                host: {
-                    api: {}
-                }
-            };
-            try {
-                await ExtensionRegistrationService.openAddContextAddOnBar(mockGuestConnection, mockAppExtensionId);
-                fail('Expected an error to be thrown'); 
-            } catch (error) {
-                expect(error).toBeDefined();
-                expect(error).toBeInstanceOf(ExtensionRegistrationError);
-            }
         });
     });
 });
