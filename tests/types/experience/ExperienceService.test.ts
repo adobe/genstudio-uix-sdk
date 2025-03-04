@@ -12,12 +12,14 @@ governing permissions and limitations under the License.
 
 import { ExperienceService, ExperienceError, RightPanelApi } from '../../../src/types/experience/ExperienceService';
 import { GuestUI } from '@adobe/uix-guest';
+import { GenerationContext } from '../../../src/types/generationContext/GenerationContext';
 
-const createMockConnection = (getExperiencesMock: jest.Mock) => ({
+const createMockConnection = (getExperiencesMock?: jest.Mock, getGenerationContextMock?: jest.Mock) => ({
   host: {
     api: {
       createRightPanel: {
-        getExperiences: getExperiencesMock
+        getExperiences: getExperiencesMock,
+        getGenerationContext: getGenerationContextMock
       }
     }
   }
@@ -39,6 +41,11 @@ describe('ExperienceService', () => {
       description: 'Test Description',
       complexField: { key: 'value' }
     }
+  };
+
+  const mockGenerationContext: GenerationContext = {
+    id: "123",
+    userPrompt: "test-user-prompt"
   };
 
   describe('convertRawExperienceToExperience', () => {
@@ -171,4 +178,28 @@ describe('ExperienceService', () => {
       });
     });
   });
-}); 
+
+  describe("getGenerationContext", () => {
+    it("should get generation context", async () => {
+      const mockGetGenerationContext = jest.fn().mockResolvedValue(mockGenerationContext);
+      const mockConnection = createMockConnection(undefined, mockGetGenerationContext);
+      const generationContext = await ExperienceService.getGenerationContext(mockConnection);
+      expect(generationContext).toEqual(mockGenerationContext);
+    });
+
+    it("should throw GenerationContextError if connection is missing", async () => {
+      const connection = null;
+      await expect(ExperienceService.getGenerationContext(
+        connection as unknown as GuestUI<RightPanelApi>
+      )).rejects.toThrow(new ExperienceError('Connection is required to get generation context'));
+    });
+
+    it("should throw ExperienceError on API failure", async () => {
+      const mockGetGenerationContext = jest.fn().mockRejectedValue(new Error('API Error'));
+      const mockConnection = createMockConnection(undefined, mockGetGenerationContext);
+      await expect(ExperienceService.getGenerationContext(mockConnection))
+        .rejects
+        .toThrow(new ExperienceError('Failed to get generation context'));
+    });
+  });
+});

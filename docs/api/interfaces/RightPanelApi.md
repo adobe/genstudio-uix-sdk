@@ -18,11 +18,11 @@
 
 ### api
 
-> **api**: \{ `createRightPanel`: \{ `getExperiences`: () => `Promise`\<`any`[]\>; \}; \}
+> **api**: \{ `createRightPanel`: \{ `getExperiences`: () => `Promise`\<`any`[]\>; `getGenerationContext`: () => `Promise`\<`any`\>; \}; \}
 
 #### createRightPanel
 
-> **createRightPanel**: \{ `getExperiences`: () => `Promise`\<`any`[]\>; \}
+> **createRightPanel**: \{ `getExperiences`: () => `Promise`\<`any`[]\>; `getGenerationContext`: () => `Promise`\<`any`\>; \}
 
 ##### createRightPanel.getExperiences()
 
@@ -31,3 +31,11 @@
 ###### Returns
 
 `Promise`\<`any`[]\>
+
+##### createRightPanel.getGenerationContext()
+
+> **getGenerationContext**: () => `Promise`\<`any`\>
+
+###### Returns
+
+`Promise`\<`any`\>

@@ -162,6 +162,7 @@ describe("SDK Exports", () => {
 
     const generationContext: GenerationContext = {
       id: "test",
+      userPrompt: "my user prompt",
       channel: Email,
       brand,
       product,

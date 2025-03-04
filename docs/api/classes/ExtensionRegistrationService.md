@@ -20,6 +20,26 @@ Manages extension registration
 
 ## Methods
 
+### closeAddContextAddOnBar()
+
+> `static` **closeAddContextAddOnBar**(`guestConnection`: `any`): `any`
+
+close the add context add on dialog
+
+#### Parameters
+
+##### guestConnection
+
+`any`
+
+the guest connection
+
+#### Returns
+
+`any`
+
+***
+
 ### openAddContextAddOnBar()
 
 > `static` **openAddContextAddOnBar**(`guestConnection`: `any`, `appExtensionId`: `string`): `any`

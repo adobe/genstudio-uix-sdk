@@ -93,3 +93,19 @@ Promise<Experience[]> Array of converted experiences
 #### Throws
 
 Error if connection is missing
+
+***
+
+### getGenerationContext()
+
+> `static` **getGenerationContext**(`connection`: `GuestUI`\<[`RightPanelApi`](../interfaces/RightPanelApi.md)\>): `Promise`\<[`GenerationContext`](../type-aliases/GenerationContext.md)\>
+
+#### Parameters
+
+##### connection
+
+`GuestUI`\<[`RightPanelApi`](../interfaces/RightPanelApi.md)\>
+
+#### Returns
+
+`Promise`\<[`GenerationContext`](../type-aliases/GenerationContext.md)\>

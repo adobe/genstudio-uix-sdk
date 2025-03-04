@@ -157,6 +157,7 @@ describe("contract", () => {
     };
     const generationContext: GenerationContext = {
       id: "1234",
+      userPrompt: "my user prompt",
       channel: {
         id: "Email",
         name: "Email",
@@ -207,6 +208,7 @@ describe("contract", () => {
     };
     const generationContext: GenerationContext = {
       id: "1234",
+      userPrompt: "my user prompt",
       channel: {
         id: "Email",
         name: "Email",
@@ -230,12 +232,14 @@ describe("contract", () => {
     expect(generationContext.sections?.[0]).toEqual(sectionGenerationContext);
   });
 
-  it("should define a generationContext with empty values except id", () => {
+  it("should define a generationContext with empty values except id and userPrompt", () => {
     const generationContext: GenerationContext = {
       id: "1234",
+      userPrompt: "my user prompt",
     };
     expect(generationContext).toBeDefined();
     expect(generationContext.id).toBe("1234");
+    expect(generationContext.userPrompt).toBe("my user prompt");
     expect(generationContext.channel).toBeUndefined();
     expect(generationContext.brand).toBeUndefined();
     expect(generationContext.persona).toBeUndefined();

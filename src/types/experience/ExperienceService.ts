@@ -14,11 +14,13 @@ import { Experience, ExperienceField } from "./Experience";
 
 import { GuestUI } from "@adobe/uix-guest";
 import { VirtualApi } from "@adobe/uix-core";
+import { GenerationContext } from "../generationContext/GenerationContext";
 
 export interface RightPanelApi extends VirtualApi {
   api: {
     createRightPanel: {
       getExperiences: () => Promise<any[]>;
+      getGenerationContext: () => Promise<any>;
     };
   };
 }
@@ -111,5 +113,19 @@ export class ExperienceService {
     return rawExperiences.map(exp =>
       this.convertRawExperienceToExperience(exp),
     );
+  }
+
+  static async getGenerationContext(
+    connection: GuestUI<RightPanelApi>
+  ): Promise<GenerationContext> {
+    if (!connection) {
+      throw new ExperienceError("Connection is required to get generation context");
+    }
+    try {
+      // @ts-ignore Remote API is handled through postMessage
+      return await connection.host.api.createRightPanel.getGenerationContext();
+    } catch (error) {
+      throw new ExperienceError("Failed to get generation context");
+    }
   }
 }
