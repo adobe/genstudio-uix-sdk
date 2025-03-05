@@ -12,12 +12,13 @@ governing permissions and limitations under the License.
 
 import { GuestUI } from "@adobe/uix-guest";
 import { VirtualApi } from "@adobe/uix-core";
-import { AdditionalContext, AdditionalContextTypes } from "./GenerationContext";
+import { AdditionalContext, AdditionalContextTypes, GenerationContext } from "./GenerationContext";
 
 export interface CreateApi extends VirtualApi {
   api: {
     create: {
       updateAdditionalContext: (additionalContext: AdditionalContext<any>) => Promise<void>;
+      getGenerationContext: () => Promise<any>;
     };
   };
 }
@@ -62,6 +63,26 @@ export class GenerationContextService {
       await connection.host.api.create.updateAdditionalContext(additionalContext);
     } catch (error) {
       throw new GenerationContextError("Failed to set additional context");
+    }
+  }
+
+  /**
+   * Gets the generation context
+   * @param connection - The guest connection to the host
+   * @returns The generation context
+   * @throws Error if connection is missing
+   */
+  static async getGenerationContext(
+    connection: GuestUI<CreateApi>
+  ): Promise<GenerationContext> {
+    if (!connection) {
+      throw new GenerationContextError("Connection is required to get generation context");
+    }
+    try {
+      // @ts-ignore Remote API is handled through postMessage
+      return await connection.host.api.create.getGenerationContext();
+    } catch (error) {
+      throw new GenerationContextError("Failed to get generation context");
     }
   }
 }
