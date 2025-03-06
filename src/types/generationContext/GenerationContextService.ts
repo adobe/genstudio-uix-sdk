@@ -13,6 +13,7 @@ governing permissions and limitations under the License.
 import { GuestUI } from "@adobe/uix-guest";
 import { VirtualApi } from "@adobe/uix-core";
 import { AdditionalContext, AdditionalContextTypes } from "./GenerationContext";
+import { ExtensionRegistrationService } from "../extensionRegistration/ExtenstionRegistration";
 
 export interface CreateApi extends VirtualApi {
   api: {
@@ -47,7 +48,6 @@ export class GenerationContextService {
       [!extensionId, "Invalid extension ID"],
       [!additionalContextType, "Context type is required"],
       [!Object.values(AdditionalContextTypes).includes(additionalContextType), "Invalid context type"],
-      [!additionalContextValues.length, "Additional context values are required"],
       [
         !additionalContextValues.every(value => value.id && value.description),
         "Invalid context value format"
@@ -56,6 +56,9 @@ export class GenerationContextService {
     const failedValidation = validations.find(([condition]) => condition);
     if (failedValidation) {
       throw new GenerationContextError(failedValidation[1]);
+    }
+    if (!additionalContextValues.length) {
+      return ExtensionRegistrationService.closeAddContextAddOnBar(connection);
     }
     try {
       // @ts-ignore Remote API is handled through postMessage
