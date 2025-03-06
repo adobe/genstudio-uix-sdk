@@ -10,23 +10,31 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { Experience, ExperienceField } from "./Experience";
-
+import { Experience, ExperienceField } from "../experience/Experience";
 import { GuestUI } from "@adobe/uix-guest";
+import { VirtualApi } from "@adobe/uix-core";
 import { GenerationContext } from "../generationContext/GenerationContext";
-import { RightPanelApi } from "../RightPanel/RightPanel";
 
-export class ExperienceError extends Error {
+export interface RightPanelApi extends VirtualApi {
+  api: {
+    createRightPanel: {
+      getExperiences: () => Promise<any[]>;
+      getGenerationContext: () => Promise<any>;
+    };
+  };
+}
+
+export class RightPanelError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "ExperienceError";
+    this.name = "RightPanelError";
   }
 }
 
 /**
- * Manages experience data conversion and retrieval
+ * Manages right panel data conversion and retrieval
  */
-export class ExperienceService {
+export class RightPanelService {
   /**
    * Fetches experiences from the connection
    * @param connection - The guest connection to the host
@@ -37,7 +45,7 @@ export class ExperienceService {
     connection: GuestUI<RightPanelApi>,
   ): Promise<Experience[]> {
     if (!connection) {
-      throw new ExperienceError("Connection is required to get experiences");
+      throw new RightPanelError("Connection is required to get experiences");
     }
 
     try {
@@ -60,7 +68,7 @@ export class ExperienceService {
       // otherwise convert the raw experiences to Experience[]
       return this.convertRawExperiencesToExperiences(experiences);
     } catch (error) {
-      throw new ExperienceError("Failed to fetch experiences from host");
+      throw new RightPanelError("Failed to fetch experiences from host");
     }
   }
 
@@ -106,23 +114,17 @@ export class ExperienceService {
     );
   }
 
-  /**
-   * Gets the generation context from the connection
-   * @param connection - The guest connection to the host
-   * @returns The generation context
-   * @throws Error if connection is missing
-   */
   static async getGenerationContext(
     connection: GuestUI<RightPanelApi>
   ): Promise<GenerationContext> {
     if (!connection) {
-      throw new ExperienceError("Connection is required to get generation context");
+      throw new RightPanelError("Connection is required to get generation context");
     }
     try {
       // @ts-ignore Remote API is handled through postMessage
       return await connection.host.api.createRightPanel.getGenerationContext();
     } catch (error) {
-      throw new ExperienceError("Failed to get generation context");
+      throw new RightPanelError("Failed to get generation context");
     }
   }
 }
