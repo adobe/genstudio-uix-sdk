@@ -100,12 +100,22 @@ Error if connection is missing
 
 > `static` **getGenerationContext**(`connection`: `GuestUI`\<[`RightPanelApi`](../interfaces/RightPanelApi.md)\>): `Promise`\<[`GenerationContext`](../type-aliases/GenerationContext.md)\>
 
+Gets the generation context from the connection
+
 #### Parameters
 
 ##### connection
 
 `GuestUI`\<[`RightPanelApi`](../interfaces/RightPanelApi.md)\>
 
+The guest connection to the host
+
 #### Returns
 
 `Promise`\<[`GenerationContext`](../type-aliases/GenerationContext.md)\>
+
+The generation context
+
+#### Throws
+
+Error if connection is missing

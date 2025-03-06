@@ -56,7 +56,7 @@ export type GenerationContext = {
   id: string;
   userPrompt: string;
   channel?: Channel;
-  additionalContexts?: Record<string, AdditionalContext<any>>;
+  additionalContexts?: Record<number, AdditionalContext<any>[]>;
   brand?: Brand;
   product?: Product;
   persona?: Persona;

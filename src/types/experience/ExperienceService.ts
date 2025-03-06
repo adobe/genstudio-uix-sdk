@@ -115,6 +115,12 @@ export class ExperienceService {
     );
   }
 
+  /**
+   * Gets the generation context from the connection
+   * @param connection - The guest connection to the host
+   * @returns The generation context
+   * @throws Error if connection is missing
+   */
   static async getGenerationContext(
     connection: GuestUI<RightPanelApi>
   ): Promise<GenerationContext> {

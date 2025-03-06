@@ -18,11 +18,19 @@
 
 ### api
 
-> **api**: \{ `create`: \{ `updateAdditionalContext`: (`additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<`any`\>) => `Promise`\<`void`\>; \}; \}
+> **api**: \{ `create`: \{ `getGenerationContext`: () => `Promise`\<`any`\>; `updateAdditionalContext`: (`additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<`any`\>) => `Promise`\<`void`\>; \}; \}
 
 #### create
 
-> **create**: \{ `updateAdditionalContext`: (`additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<`any`\>) => `Promise`\<`void`\>; \}
+> **create**: \{ `getGenerationContext`: () => `Promise`\<`any`\>; `updateAdditionalContext`: (`additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<`any`\>) => `Promise`\<`void`\>; \}
+
+##### create.getGenerationContext()
+
+> **getGenerationContext**: () => `Promise`\<`any`\>
+
+###### Returns
+
+`Promise`\<`any`\>
 
 ##### create.updateAdditionalContext()
 

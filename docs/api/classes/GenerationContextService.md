@@ -18,6 +18,32 @@
 
 ## Methods
 
+### getGenerationContext()
+
+> `static` **getGenerationContext**(`connection`: `GuestUI`\<[`CreateApi`](../interfaces/CreateApi.md)\>): `Promise`\<[`GenerationContext`](../type-aliases/GenerationContext.md)\>
+
+Gets the generation context
+
+#### Parameters
+
+##### connection
+
+`GuestUI`\<[`CreateApi`](../interfaces/CreateApi.md)\>
+
+The guest connection to the host
+
+#### Returns
+
+`Promise`\<[`GenerationContext`](../type-aliases/GenerationContext.md)\>
+
+The generation context
+
+#### Throws
+
+Error if connection is missing
+
+***
+
 ### setAdditionalContext()
 
 > `static` **setAdditionalContext**(`connection`: `GuestUI`\<[`CreateApi`](../interfaces/CreateApi.md)\>, `additionalContext`: [`AdditionalContext`](../type-aliases/AdditionalContext.md)\<`any`\>): `Promise`\<`void`\>

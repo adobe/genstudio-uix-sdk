@@ -12,13 +12,14 @@ governing permissions and limitations under the License.
 
 import { GuestUI } from "@adobe/uix-guest";
 import { CreateApi, GenerationContextService, GenerationContextError } from "../../../src/types/generationContext/GenerationContextService";
-import { AdditionalContext, AdditionalContextTypes, AdditionalContextValues, Claim } from "../../../src/types/generationContext/GenerationContext";
+import { AdditionalContext, AdditionalContextTypes, AdditionalContextValues, Claim, GenerationContext } from "../../../src/types/generationContext/GenerationContext";
 
-const createMockConnection = (updateAdditionalContextMock: jest.Mock, closeDialogMock: jest.Mock) => ({
+const createMockConnection = (updateAdditionalContextMock?: jest.Mock, getGenerationContextMock?: jest.Mock, closeDialogMock?: jest.Mock) => ({
   host: {
     api: {
       create: {
-        updateAdditionalContext: updateAdditionalContextMock
+        updateAdditionalContext: updateAdditionalContextMock,
+        getGenerationContext: getGenerationContextMock
       },
       dialogs_context: {
         close: closeDialogMock
@@ -42,6 +43,11 @@ const mockAdditionalContext: AdditionalContext<Claim> = {
   additionalContextValues: mockContextValues
 };
 
+const mockGenerationContext: GenerationContext = {
+  id: "123",
+  userPrompt: "test-user-prompt"
+};
+
 describe("GenerationContextService", () => {
   beforeEach(() => {
     jest.spyOn(console, 'error').mockImplementation(() => { });
@@ -54,7 +60,7 @@ describe("GenerationContextService", () => {
   describe("setAdditionalContext", () => {
     it("should set additional context", async () => {
       const updateAdditionalContextMock = jest.fn().mockResolvedValue(undefined);
-      const connection = createMockConnection(updateAdditionalContextMock, jest.fn());
+      const connection = createMockConnection(updateAdditionalContextMock, jest.fn(), jest.fn());
       await GenerationContextService.setAdditionalContext(connection, mockAdditionalContext);
       expect(updateAdditionalContextMock).toHaveBeenCalledWith(mockAdditionalContext);
     });
@@ -68,7 +74,7 @@ describe("GenerationContextService", () => {
     });
 
     it("should throw GenerationContextError if extension ID is missing", async () => {
-      const connection = createMockConnection(jest.fn(), jest.fn());
+      const connection = createMockConnection();
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
         { ...mockAdditionalContext, extensionId: null as unknown as string }
@@ -76,7 +82,7 @@ describe("GenerationContextService", () => {
     });
 
     it("should throw GenerationContextError if context type is missing", async () => {
-      const connection = createMockConnection(jest.fn(), jest.fn());
+      const connection = createMockConnection();
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
         { ...mockAdditionalContext, additionalContextType: null as unknown as AdditionalContextTypes }
@@ -84,7 +90,7 @@ describe("GenerationContextService", () => {
     });
 
     it("should throw GenerationContextError if context type is invalid", async () => {
-      const connection = createMockConnection(jest.fn(), jest.fn());
+      const connection = createMockConnection();
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
         { ...mockAdditionalContext, additionalContextType: "invalid" as unknown as AdditionalContextTypes }
@@ -94,7 +100,7 @@ describe("GenerationContextService", () => {
     it("should not throw GenerationContextError if additional context values are missing", async () => {
       const closeDialogMock = jest.fn();
       const updateAdditionalContextMock = jest.fn().mockRejectedValue(new Error('API Error'));
-      const connection = createMockConnection(updateAdditionalContextMock, closeDialogMock);
+      const connection = createMockConnection(updateAdditionalContextMock, undefined, closeDialogMock);
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
         { ...mockAdditionalContext, additionalContextValues: [] }
@@ -105,11 +111,33 @@ describe("GenerationContextService", () => {
 
     it('should throw GenerationContextError on API failure', async () => {
       const updateAdditionalContextMock = jest.fn().mockRejectedValue(new Error('API Error'));
-      const connection = createMockConnection(updateAdditionalContextMock, jest.fn());
+      const connection = createMockConnection(updateAdditionalContextMock);
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
         mockAdditionalContext
       )).rejects.toThrow(new GenerationContextError('Failed to set additional context'));
+    });
+  });
+
+  describe("getGenerationContext", () => {
+    it("should get generation context", async () => {
+      const getGenerationContextMock = jest.fn().mockResolvedValue(mockGenerationContext);
+      const connection = createMockConnection(undefined, getGenerationContextMock);
+      const generationContext = await GenerationContextService.getGenerationContext(connection);
+      expect(generationContext).toEqual(mockGenerationContext);
+    });
+
+    it("should throw GenerationContextError if connection is missing", async () => {
+      const connection = null;
+      await expect(GenerationContextService.getGenerationContext(
+        connection as unknown as GuestUI<CreateApi>
+      )).rejects.toThrow(new GenerationContextError('Connection is required to get generation context'));
+    });
+
+    it("should throw GenerationContextError on API failure", async () => {
+      const getGenerationContextMock = jest.fn().mockRejectedValue(new Error('API Error'));
+      const connection = createMockConnection(undefined, getGenerationContextMock);
+      await expect(GenerationContextService.getGenerationContext(connection)).rejects.toThrow(new GenerationContextError('Failed to get generation context'));
     });
   });
 });
