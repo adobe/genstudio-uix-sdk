@@ -60,7 +60,7 @@ describe("GenerationContextService", () => {
   describe("setAdditionalContext", () => {
     it("should set additional context", async () => {
       const updateAdditionalContextMock = jest.fn().mockResolvedValue(undefined);
-      const connection = createMockConnection(updateAdditionalContextMock, jest.fn(), jest.fn());
+      const connection = createMockConnection(updateAdditionalContextMock);
       await GenerationContextService.setAdditionalContext(connection, mockAdditionalContext);
       expect(updateAdditionalContextMock).toHaveBeenCalledWith(mockAdditionalContext);
     });
