@@ -14,15 +14,12 @@ import { GuestUI } from "@adobe/uix-guest";
 import { CreateApi, GenerationContextService, GenerationContextError } from "../../../src/types/generationContext/GenerationContextService";
 import { AdditionalContext, AdditionalContextTypes, AdditionalContextValues, Claim, GenerationContext } from "../../../src/types/generationContext/GenerationContext";
 
-const createMockConnection = (updateAdditionalContextMock?: jest.Mock, getGenerationContextMock?: jest.Mock, closeDialogMock?: jest.Mock) => ({
+const createMockConnection = (updateAdditionalContextMock?: jest.Mock, getGenerationContextMock?: jest.Mock) => ({
   host: {
     api: {
       create: {
         updateAdditionalContext: updateAdditionalContextMock,
         getGenerationContext: getGenerationContextMock
-      },
-      dialogs_context: {
-        close: closeDialogMock
       }
     }
   }
@@ -98,15 +95,11 @@ describe("GenerationContextService", () => {
     });
 
     it("should not throw GenerationContextError if additional context values are missing", async () => {
-      const closeDialogMock = jest.fn();
-      const updateAdditionalContextMock = jest.fn().mockRejectedValue(new Error('API Error'));
-      const connection = createMockConnection(updateAdditionalContextMock, undefined, closeDialogMock);
+      const connection = createMockConnection(jest.fn());
       await expect(GenerationContextService.setAdditionalContext(
         connection as unknown as GuestUI<CreateApi>,
         { ...mockAdditionalContext, additionalContextValues: [] }
       ));
-      expect(closeDialogMock).toHaveBeenCalled();
-      expect(updateAdditionalContextMock).not.toHaveBeenCalled();
     });
 
     it('should throw GenerationContextError on API failure', async () => {

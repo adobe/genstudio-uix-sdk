@@ -58,9 +58,6 @@ export class GenerationContextService {
     if (failedValidation) {
       throw new GenerationContextError(failedValidation[1]);
     }
-    if (!additionalContextValues.length) {
-      return ExtensionRegistrationService.closeAddContextAddOnBar(connection);
-    }
     try {
       // @ts-ignore Remote API is handled through postMessage
       await connection.host.api.create.updateAdditionalContext(additionalContext);
