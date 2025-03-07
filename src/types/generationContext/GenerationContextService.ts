@@ -12,6 +12,7 @@ governing permissions and limitations under the License.
 
 import { GuestUI } from "@adobe/uix-guest";
 import { VirtualApi } from "@adobe/uix-core";
+import { ExtensionRegistrationService } from "../extensionRegistration/ExtenstionRegistration";
 import { AdditionalContext, AdditionalContextTypes, GenerationContext } from "./GenerationContext";
 
 export interface CreateApi extends VirtualApi {
@@ -48,7 +49,6 @@ export class GenerationContextService {
       [!extensionId, "Invalid extension ID"],
       [!additionalContextType, "Context type is required"],
       [!Object.values(AdditionalContextTypes).includes(additionalContextType), "Invalid context type"],
-      [!additionalContextValues.length, "Additional context values are required"],
       [
         !additionalContextValues.every(value => value.id && value.description),
         "Invalid context value format"
