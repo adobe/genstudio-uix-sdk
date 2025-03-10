@@ -17,7 +17,6 @@ export * from "./types/experience/Experience";
 export {
   ExperienceService,
   ExperienceError,
-  RightPanelApi,
 } from "./types/experience/ExperienceService";
 export {
   GenerationContextService,
@@ -29,3 +28,16 @@ export {
   ExtensionRegistrationService,
   ExtensionRegistrationError,
 } from "./types/extensionRegistration/ExtenstionRegistration";
+
+export {
+  AddContextService,
+  AddContextError,
+  AddContextApi,
+} from "./types/AddContext/AddContext";
+
+export {
+  RightPanelService,
+  RightPanelError,
+  RightPanelApi,
+} from "./types/RightPanel/RightPanel";
+
