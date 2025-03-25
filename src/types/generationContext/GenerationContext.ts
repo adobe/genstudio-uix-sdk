@@ -48,7 +48,7 @@ export type AdditionalContext<T> = {
 
 export type SectionGenerationContext = {
   id: string;
-  additionalContexts?: Record<string, AdditionalContext<any>>;
+  additionalContexts?: AdditionalContext<any>[];
   product?: Product;
 };
 
@@ -56,7 +56,7 @@ export type GenerationContext = {
   id: string;
   userPrompt: string;
   channel?: Channel;
-  additionalContexts?: Record<number, AdditionalContext<any>[]>;
+  additionalContexts?: AdditionalContext<any>[];
   brand?: Brand;
   product?: Product;
   persona?: Persona;

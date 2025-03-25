@@ -116,9 +116,7 @@ describe("contract", () => {
       additionalContextType: AdditionalContextTypes.Claims,
       additionalContextValues: additionalContextValues,
     };
-    const additionalContexts: Record<string, AdditionalContext<any>> = {
-      type: additionalContext,
-    };
+    const additionalContexts: AdditionalContext<any>[] = [additionalContext];
     const product: Product = {
       id: "1234",
       name: "product",
@@ -148,9 +146,7 @@ describe("contract", () => {
       additionalContextType: AdditionalContextTypes.Claims,
       additionalContextValues: additionalContextValues,
     };
-    const additionalContexts: Record<number, AdditionalContext<any>[]> = {
-      0: [additionalContext],
-    };
+    const additionalContexts: AdditionalContext<any>[] = [additionalContext];
     const product: Product = {
       id: "1234",
       name: "product",
@@ -194,9 +190,7 @@ describe("contract", () => {
       additionalContextType: AdditionalContextTypes.Claims,
       additionalContextValues: additionalContextValues,
     };
-    const additionalContexts: Record<string, AdditionalContext<any>> = {
-      type: additionalContext,
-    };
+    const additionalContexts: AdditionalContext<any>[] = [additionalContext];
     const product: Product = {
       id: "1234",
       name: "product",

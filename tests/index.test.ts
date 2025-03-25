@@ -153,9 +153,7 @@ describe("SDK Exports", () => {
 
     const sectionGenerationContext: SectionGenerationContext = {
       id: "test",
-      additionalContexts: {
-        [AdditionalContextTypes.Claims]: additionalContext,
-      },
+      additionalContexts: [additionalContext],
       product,
     };
     expect(sectionGenerationContext.id).toBe("test");
