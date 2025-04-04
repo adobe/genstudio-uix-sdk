@@ -9,21 +9,25 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
+/* this file defines types and interfaces that are considered as Channels api for extension consumers */
 
-/* this file defines types and interfaces that are considered as api for extension consumers */
-
-import { Account } from "../account/Account";
 import { Channel } from "../channel/Channel";
 
-/** App MetaData */
-export type AppMetaData = {
+/**
+ * Represents an Asset entity in the Experience.
+ */
+export type Asset = {
   id: string;
-  extensionId: string;
-  iconDataUri: string;
-  supportedChannels: Channel[];
-  label: string;
-  accounts?: Account[];
+  name: string;
+  url: string;
+  thumbnailUrl: string;
+  metadata?: AssetMetadata;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type AppMetadata = AppMetaData; // NOSONAR
+export type AssetMetadata = {
+  channels: Channel[];
+  timeframe: string[];
+  region: string[];
+  language: string[];
+  keywords: string[];
+};

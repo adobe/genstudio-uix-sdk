@@ -10,20 +10,12 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-/* this file defines types and interfaces that are considered as api for extension consumers */
+import { EXTENSIBILITY_KEYWORD } from "../../src/constant/keyword";
 
-import { Account } from "../account/Account";
-import { Channel } from "../channel/Channel";
-
-/** App MetaData */
-export type AppMetaData = {
-  id: string;
-  extensionId: string;
-  iconDataUri: string;
-  supportedChannels: Channel[];
-  label: string;
-  accounts?: Account[];
-};
-
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type AppMetadata = AppMetaData; // NOSONAR
+describe("Extensibility Keyword", () => {
+  it("should export the correct EXTENSIBILITY_KEYWORD value", () => {
+    expect(EXTENSIBILITY_KEYWORD).toBeDefined();
+    expect(EXTENSIBILITY_KEYWORD).toBe("genstudio-ui-extensibility");
+    expect(typeof EXTENSIBILITY_KEYWORD).toBe("string");
+  });
+});
