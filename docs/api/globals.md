@@ -26,10 +26,13 @@
 
 ## Type Aliases
 
+- [Account](type-aliases/Account.md)
 - [AdditionalContext](type-aliases/AdditionalContext.md)
 - [AdditionalContextValues](type-aliases/AdditionalContextValues.md)
 - [AppMetadata](type-aliases/AppMetadata.md)
 - [AppMetaData](type-aliases/AppMetaData-1.md)
+- [Asset](type-aliases/Asset.md)
+- [AssetMetadata](type-aliases/AssetMetadata.md)
 - [Brand](type-aliases/Brand.md)
 - [Channel](type-aliases/Channel.md)
 - [Claim](type-aliases/Claim.md)
@@ -37,3 +40,7 @@
 - [Persona](type-aliases/Persona.md)
 - [Product](type-aliases/Product.md)
 - [SectionGenerationContext](type-aliases/SectionGenerationContext.md)
+
+## Variables
+
+- [EXTENSIBILITY\_KEYWORD](variables/EXTENSIBILITY_KEYWORD.md)

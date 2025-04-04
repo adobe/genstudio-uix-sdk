@@ -52,9 +52,9 @@ export class ExtensionRegistrationService {
             }
      */
 
-  /************************************
-   * Create Add On Bar (Right Panel)
-   ************************************/
+  //************************************
+  // Create Add On Bar (Right Panel)
+  //************************************
 
   static openCreateAddOnBar(guestConnection: any, appExtensionId: string) {
     // support only old api for now
@@ -62,9 +62,9 @@ export class ExtensionRegistrationService {
     // return guestConnection.host.api.createAddOnBar.openDialog(`${appExtensionId}`);
   }
 
-  /************************************
-   * Create Add Context Addon Dialog
-   ************************************/
+  //************************************
+  // Create Add Context Addon Dialog
+  //************************************
 
   /**
    * open the add context add on bar
@@ -87,9 +87,9 @@ export class ExtensionRegistrationService {
     // return guestConnection.host.api.createContextAddOns.closeDialog();
   }
 
-  /************************************
-   * Content Select Content Add Ons
-   ************************************/
+  //************************************
+  // Content Select Content Add Ons
+  //************************************
 
   /**
    * open the content select content add ons dialog

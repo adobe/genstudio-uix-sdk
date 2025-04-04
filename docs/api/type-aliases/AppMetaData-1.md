@@ -6,11 +6,15 @@
 
 # Type Alias: AppMetaData
 
-> **AppMetaData**: \{ `extensionId`: `string`; `iconDataUri`: `string`; `id`: `string`; `label`: `string`; `supportedChannels`: [`Channel`](Channel.md)[]; \}
+> **AppMetaData**: \{ `accounts`: [`Account`](Account.md)[]; `extensionId`: `string`; `iconDataUri`: `string`; `id`: `string`; `label`: `string`; `supportedChannels`: [`Channel`](Channel.md)[]; \}
 
 App MetaData
 
 ## Type declaration
+
+### accounts?
+
+> `optional` **accounts**: [`Account`](Account.md)[]
 
 ### extensionId
 

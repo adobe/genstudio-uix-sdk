@@ -13,4 +13,4 @@ governing permissions and limitations under the License.
 /**
  * Default extensibility keyword used throughout the SDK
  */
-export const EXTENSIBILITY_KEYWORD = "genstudio-ui-extensibility";
+export const EXTENSIBILITY_KEYWORD: string = "genstudio-ui-extensibility";

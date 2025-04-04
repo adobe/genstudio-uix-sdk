@@ -6,7 +6,7 @@
 
 # Type Alias: SectionGenerationContext
 
-> **SectionGenerationContext**: \{ `additionalContexts`: [`AdditionalContext`](AdditionalContext.md)\<`any`\>[]; `id`: `string`; `product`: [`Product`](Product.md); \}
+> **SectionGenerationContext**: \{ `additionalContexts`: [`AdditionalContext`](AdditionalContext.md)\<`any`\>[]; `id`: `string`; `imageUrl`: `string`; `product`: [`Product`](Product.md); \}
 
 ## Type declaration
 
@@ -17,6 +17,10 @@
 ### id
 
 > **id**: `string`
+
+### imageUrl?
+
+> `optional` **imageUrl**: `string`
 
 ### product?
 
