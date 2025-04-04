@@ -239,4 +239,36 @@ describe("contract", () => {
     expect(generationContext.persona).toBeUndefined();
     expect(generationContext.sections).toBeUndefined();
   });
+
+  it("should define a generationContext with imageUrl", () => {
+    const generationContext: GenerationContext = {
+      id: "1234",
+      userPrompt: "my user prompt",
+      imageUrl: "https://example.com/image.jpg",
+    };
+    expect(generationContext).toBeDefined();
+    expect(generationContext.id).toBe("1234");
+    expect(generationContext.userPrompt).toBe("my user prompt");
+    expect(generationContext.imageUrl).toBe("https://example.com/image.jpg");
+  });
+
+  it("should define a generationContext with imageUrl and sections", () => {
+    const generationContext: GenerationContext = {
+      id: "1234",
+      userPrompt: "my user prompt",
+      sections: [
+        {
+          id: "1",
+          imageUrl: "https://example.com/image.jpg",
+        },
+      ],
+    };
+    expect(generationContext).toBeDefined();
+    expect(generationContext.id).toBe("1234");
+    expect(generationContext.userPrompt).toBe("my user prompt");
+    expect(generationContext.sections).toBeDefined();
+    expect(generationContext.sections?.[0].imageUrl).toBe(
+      "https://example.com/image.jpg",
+    );
+  });
 });
