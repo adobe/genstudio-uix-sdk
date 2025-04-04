@@ -47,4 +47,14 @@ describe('Experience Types', () => {
     expect(experience.experienceFields.subject.fieldValue).toBe("test field value");
     expect(experience.experienceFields.section2_image.fieldValue).toBe('{"test":"1"}');
   });
+
+  it("should define Experience with imageUrl", () => {
+    const experience: Experience = {
+      id: "1234",
+      experienceFields: {},
+      imageUrl: "https://example.com/image.jpg",
+    };
+    expect(experience).toBeDefined();
+    expect(experience.imageUrl).toBe("https://example.com/image.jpg");
+  });
 });

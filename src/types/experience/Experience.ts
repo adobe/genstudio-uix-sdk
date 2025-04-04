@@ -20,6 +20,8 @@ export interface Experience {
     id: string;
     /** Collection of experience fields stored as key-value pairs */
     experienceFields: Record<string, ExperienceField>;
+    /** URL of the image used in the experience */
+    imageUrl?: string;
 }
 
 /**
@@ -32,4 +34,3 @@ export interface ExperienceField {
     /** Value associated with the experience field */
     fieldValue: string;
 }
-    
