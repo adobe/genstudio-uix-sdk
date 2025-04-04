@@ -240,16 +240,31 @@ describe("contract", () => {
     expect(generationContext.sections).toBeUndefined();
   });
 
-  it("should define a generationContext with imageUrl", () => {
+  it("should define a generationContext with single imageUrl", () => {
     const generationContext: GenerationContext = {
       id: "1234",
       userPrompt: "my user prompt",
-      imageUrl: "https://example.com/image.jpg",
+      imageUrl: ["https://example.com/image.jpg"],
     };
     expect(generationContext).toBeDefined();
     expect(generationContext.id).toBe("1234");
     expect(generationContext.userPrompt).toBe("my user prompt");
-    expect(generationContext.imageUrl).toBe("https://example.com/image.jpg");
+    expect(generationContext.imageUrl?.length).toBe(1);
+    expect(generationContext.imageUrl?.[0]).toBe("https://example.com/image.jpg");
+  });
+
+  it("should define a generationContext with multiple imageUrl", () => {
+    const generationContext: GenerationContext = {
+      id: "1234",
+      userPrompt: "my user prompt",
+      imageUrl: ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+    };
+    expect(generationContext).toBeDefined();
+    expect(generationContext.id).toBe("1234");
+    expect(generationContext.userPrompt).toBe("my user prompt");
+    expect(generationContext.imageUrl?.length).toBe(2);
+    expect(generationContext.imageUrl?.[0]).toBe("https://example.com/image1.jpg");
+    expect(generationContext.imageUrl?.[1]).toBe("https://example.com/image2.jpg");
   });
 
   it("should define a generationContext with imageUrl and sections", () => {

@@ -61,6 +61,6 @@ export type GenerationContext = {
   brand?: Brand;
   product?: Product;
   persona?: Persona;
-  imageUrl?: string;
+  imageUrl?: string[];
   sections?: SectionGenerationContext[] | undefined;
 };
