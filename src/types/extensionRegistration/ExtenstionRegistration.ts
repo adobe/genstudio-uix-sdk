@@ -10,19 +10,21 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
+import { Asset } from "../asset/Asset";
+
 export class ExtensionRegistrationError extends Error {
-    constructor(message: string) {
-        super(message);
-        this.name = 'ExtensionRegistrationError';
-    }
+  constructor(message: string) {
+    super(message);
+    this.name = "ExtensionRegistrationError";
+  }
 }
 
 /**
  * Manages extension registration
  */
 export class ExtensionRegistrationService {
-    // useage
-    /**
+  // useage
+  /**
      * open the create add on bar
      * @param guestConnection - the guest connection
      * @param appExtensionId - the app extension id
@@ -49,12 +51,20 @@ export class ExtensionRegistrationService {
                 return <ExtensionRegistration />
             }
      */
-    
+
+  /************************************
+   * Create Add On Bar (Right Panel)
+   ************************************/
+
   static openCreateAddOnBar(guestConnection: any, appExtensionId: string) {
     // support only old api for now
     return guestConnection.host.api.dialogs.open(`${appExtensionId}`);
     // return guestConnection.host.api.createAddOnBar.openDialog(`${appExtensionId}`);
   }
+
+  /************************************
+   * Create Add Context Addon Dialog
+   ************************************/
 
   /**
    * open the add context add on bar
@@ -75,5 +85,41 @@ export class ExtensionRegistrationService {
     // support only old api for now
     return guestConnection.host.api.dialogs_context.close();
     // return guestConnection.host.api.createContextAddOns.closeDialog();
+  }
+
+  /************************************
+   * Content Select Content Add Ons
+   ************************************/
+
+  /**
+   * open the content select content add ons dialog
+   * @param guestConnection - the guest connection
+   * @param appExtensionId - the app extension id
+   * @returns the selected assets and the total count of left assets
+   */
+  static openSelectContentDialog(
+    guestConnection: any,
+    appExtensionId: string,
+  ): Promise<{ Assets: Asset[]; remainingSelectionCount: number }> {
+    return guestConnection.host.api.contentSelectContentAddOns.openDialog(
+      appExtensionId,
+    );
+  }
+
+  /**
+   * set the selected assets
+   * @param guestConnection - the guest connection
+   * @param assets - the selected assets
+   * @param extensionId - the extension id of the content select content add ons, this id will be used to identify the content select content add ons
+   */
+  static setSelectContentSelectedAssets(
+    guestConnection: any,
+    assets: Asset[],
+    extensionId: string,
+  ) {
+    return guestConnection.host.api.content.setSelectedAssets(
+      assets,
+      extensionId,
+    );
   }
 }
