@@ -33,6 +33,10 @@ describe('Experience Types', () => {
       section2_image: {
         fieldName: "section2_image",
         fieldValue: '{"test":"1"}'
+      },
+      image: {
+        fieldName: "imageUrl",
+        fieldValue: "https://example.com/image.jpg"
       }
     };
 
@@ -43,8 +47,10 @@ describe('Experience Types', () => {
 
     expect(experience).toBeDefined();
     expect(experience.id).toBe("230853274642");
-    expect(Object.keys(experience.experienceFields).length).toBe(2);
+    expect(Object.keys(experience.experienceFields).length).toBe(3);
     expect(experience.experienceFields.subject.fieldValue).toBe("test field value");
     expect(experience.experienceFields.section2_image.fieldValue).toBe('{"test":"1"}');
+    expect(experience.experienceFields.image.fieldName).toBe("imageUrl");
+    expect(experience.experienceFields.image.fieldValue).toBe("https://example.com/image.jpg");
   });
 });

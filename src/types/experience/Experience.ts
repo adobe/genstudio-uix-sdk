@@ -32,4 +32,3 @@ export interface ExperienceField {
     /** Value associated with the experience field */
     fieldValue: string;
 }
-    
