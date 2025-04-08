@@ -24,11 +24,3 @@ Collection of experience fields stored as key-value pairs
 > **id**: `string`
 
 Unique identifier for the experience
-
-***
-
-### imageUrl?
-
-> `optional` **imageUrl**: `string`
-
-URL of the image used in the experience
