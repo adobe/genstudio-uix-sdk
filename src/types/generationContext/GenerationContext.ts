@@ -50,7 +50,6 @@ export type SectionGenerationContext = {
   id: string;
   additionalContexts?: AdditionalContext<any>[];
   product?: Product;
-  imageUrl?: string;
 };
 
 export type GenerationContext = {
@@ -61,6 +60,5 @@ export type GenerationContext = {
   brand?: Brand;
   product?: Product;
   persona?: Persona;
-  imageUrl?: string;
   sections?: SectionGenerationContext[] | undefined;
 };
