@@ -16,7 +16,6 @@ export * from "./types/appMetaData/AppMetaData";
 export * from "./types/channel/Channel";
 export * from "./types/generationContext/GenerationContext";
 export * from "./types/experience/Experience";
-export * from "./constant/keyword";
 export {
   ExperienceService,
   ExperienceError,

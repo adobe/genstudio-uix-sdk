@@ -40,7 +40,3 @@
 - [Persona](type-aliases/Persona.md)
 - [Product](type-aliases/Product.md)
 - [SectionGenerationContext](type-aliases/SectionGenerationContext.md)
-
-## Variables
-
-- [EXTENSIBILITY\_KEYWORD](variables/EXTENSIBILITY_KEYWORD.md)
