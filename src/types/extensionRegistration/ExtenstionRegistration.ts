@@ -117,7 +117,7 @@ export class ExtensionRegistrationService {
     assets: Asset[],
     extensionId: string,
   ) {
-    return guestConnection.host.api.content.setSelectedAssets(
+    return guestConnection.host.api.contentSelectContentDialog.setSelectedAssets(
       assets,
       extensionId,
     );
