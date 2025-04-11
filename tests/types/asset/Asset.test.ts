@@ -20,6 +20,8 @@ describe("Asset", () => {
       name: "Test Asset",
       url: "https://example.com/assets/test.jpg",
       thumbnailUrl: "https://example.com/assets/test-thumb.jpg",
+      location: "https://example.com/assets/test.jpg",
+      source: "bynder",
     };
 
     expect(asset.id).toBe("asset-123");
@@ -28,6 +30,8 @@ describe("Asset", () => {
     expect(asset.thumbnailUrl).toBe(
       "https://example.com/assets/test-thumb.jpg",
     );
+    expect(asset.location).toBe("https://example.com/assets/test.jpg");
+    expect(asset.source).toBe("bynder");
     expect(asset.metadata).toBeUndefined();
   });
 
@@ -45,6 +49,8 @@ describe("Asset", () => {
       name: "Test Asset with Metadata",
       url: "https://example.com/assets/test.jpg",
       thumbnailUrl: "https://example.com/assets/test-thumb.jpg",
+      location: "https://example.com/assets/test.jpg",
+      source: "bynder",
       metadata,
     };
 

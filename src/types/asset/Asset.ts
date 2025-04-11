@@ -21,6 +21,8 @@ export type Asset = {
   name: string;
   url: string;
   thumbnailUrl: string;
+  location: string;
+  source: string;
   metadata?: AssetMetadata;
 };
 
