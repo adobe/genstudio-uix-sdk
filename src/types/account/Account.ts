@@ -12,18 +12,10 @@ governing permissions and limitations under the License.
 
 /* this file defines types and interfaces that are considered as api for extension consumers */
 
-import { Account } from "../account/Account";
-import { Channel } from "../channel/Channel";
-
-/** App MetaData */
-export type AppMetaData = {
+/**
+ * Represents an Account entity in the AppMetaData.
+ */
+export type Account = {
   id: string;
-  extensionId: string;
-  iconDataUri: string;
-  supportedChannels: Channel[];
-  label: string;
-  accounts?: Account[];
+  name: string;
 };
-
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type AppMetadata = AppMetaData; // NOSONAR

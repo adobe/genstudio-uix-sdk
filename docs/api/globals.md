@@ -26,10 +26,13 @@
 
 ## Type Aliases
 
+- [Account](type-aliases/Account.md)
 - [AdditionalContext](type-aliases/AdditionalContext.md)
 - [AdditionalContextValues](type-aliases/AdditionalContextValues.md)
 - [AppMetadata](type-aliases/AppMetadata.md)
 - [AppMetaData](type-aliases/AppMetaData-1.md)
+- [Asset](type-aliases/Asset.md)
+- [AssetMetadata](type-aliases/AssetMetadata.md)
 - [Brand](type-aliases/Brand.md)
 - [Channel](type-aliases/Channel.md)
 - [Claim](type-aliases/Claim.md)

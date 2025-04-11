@@ -10,6 +10,8 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
+export * from "./types/asset/Asset";
+export * from "./types/account/Account";
 export * from "./types/appMetaData/AppMetaData";
 export * from "./types/channel/Channel";
 export * from "./types/generationContext/GenerationContext";
