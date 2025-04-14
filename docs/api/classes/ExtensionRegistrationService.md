@@ -111,3 +111,63 @@ example:
 #### Returns
 
 `any`
+
+***
+
+### openSelectContentDialog()
+
+> `static` **openSelectContentDialog**(`guestConnection`: `any`, `appExtensionId`: `string`): `Promise`\<\{ `Assets`: [`Asset`](../type-aliases/Asset.md)[]; `remainingSelectionCount`: `number`; \}\>
+
+open the content select content add ons dialog
+
+#### Parameters
+
+##### guestConnection
+
+`any`
+
+the guest connection
+
+##### appExtensionId
+
+`string`
+
+the app extension id
+
+#### Returns
+
+`Promise`\<\{ `Assets`: [`Asset`](../type-aliases/Asset.md)[]; `remainingSelectionCount`: `number`; \}\>
+
+the selected assets and the total count of left assets
+
+***
+
+### setSelectContentSelectedAssets()
+
+> `static` **setSelectContentSelectedAssets**(`guestConnection`: `any`, `assets`: [`Asset`](../type-aliases/Asset.md)[], `extensionId`: `string`): `any`
+
+set the selected assets
+
+#### Parameters
+
+##### guestConnection
+
+`any`
+
+the guest connection
+
+##### assets
+
+[`Asset`](../type-aliases/Asset.md)[]
+
+the selected assets
+
+##### extensionId
+
+`string`
+
+the extension id of the content select content add ons, this id will be used to identify the content select content add ons
+
+#### Returns
+
+`any`
