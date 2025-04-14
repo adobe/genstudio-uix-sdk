@@ -14,6 +14,7 @@ import {
   ExtensionRegistrationService,
   ExtensionRegistrationError,
 } from "../../../src/types/extensionRegistration/ExtenstionRegistration";
+import { Asset } from "../../../src/types/asset/Asset";
 
 describe("ExtensionRegistrationService", () => {
   const mockAppExtensionId = "test-extension-id";
@@ -103,6 +104,47 @@ describe("ExtensionRegistrationService", () => {
       expect(
         mockGuestConnection.host.api.contentSelectContentAddOns.openDialog,
       ).toHaveBeenCalledWith(mockAppExtensionId);
+    });
+  });
+
+  describe("setSelectContentSelectedAssets", () => {
+    const mockAssets: Asset[] = [
+      {
+        id: "asset1",
+        name: "Asset 1",
+        url: "https://example.com/asset1",
+        thumbnailUrl: "https://example.com/asset1/thumbnail",
+        location: "location1",
+        source: "source1"
+      },
+      {
+        id: "asset2",
+        name: "Asset 2",
+        url: "https://example.com/asset2",
+        thumbnailUrl: "https://example.com/asset2/thumbnail",
+        location: "location2",
+        source: "source2"
+      },
+    ];
+
+    it("should support setting the selected assets", async () => {
+      const mockGuestConnection = {
+        host: {
+          api: {
+            contentSelectContentDialog: {
+              setSelectedAssets: jest.fn().mockResolvedValue(undefined),
+            },
+          },
+        },
+      };
+      await ExtensionRegistrationService.setSelectContentSelectedAssets(
+        mockGuestConnection,
+        mockAssets,
+        mockAppExtensionId,
+      );
+      expect(
+        mockGuestConnection.host.api.contentSelectContentDialog.setSelectedAssets,
+      ).toHaveBeenCalledWith(mockAssets, mockAppExtensionId);
     });
   });
 });
