@@ -14,16 +14,18 @@ governing permissions and limitations under the License.
 
 import { Account } from "../account/Account";
 import { Channel } from "../channel/Channel";
-
-/** App MetaData */
-export type AppMetaData = {
+/** App Metadata */
+export type AppMetadata = {
   id: string;
-  extensionId: string;
+  extensionId: string; //deprecated
   iconDataUri: string;
   supportedChannels: Channel[];
   label: string;
   accounts?: Account[];
 };
 
+/**
+ * @deprecated This type is deprecated. Please use AppMetadata instead.
+ */
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type AppMetadata = AppMetaData; // NOSONAR
+export type AppMetaData = AppMetadata; // NOSONAR

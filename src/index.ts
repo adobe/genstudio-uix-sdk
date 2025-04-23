@@ -12,7 +12,8 @@ governing permissions and limitations under the License.
 
 export * from "./types/asset/Asset";
 export * from "./types/account/Account";
-export * from "./types/appMetaData/AppMetaData";
+export * from "./types/app/App";
+export * from "./types/app/AppMetadata";
 export * from "./types/channel/Channel";
 export * from "./types/generationContext/GenerationContext";
 export * from "./types/experience/Experience";
