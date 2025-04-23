@@ -10,10 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import {
-  AppMetadata,
-  AppMetaData,
-} from "../../../src/types/appMetaData/AppMetaData";
+import { AppMetadata, AppMetaData } from "../../../src/types/app/AppMetadata";
 import { Email, Display, Meta } from "../../../src/types/channel/Channel";
 
 describe("contract", () => {
