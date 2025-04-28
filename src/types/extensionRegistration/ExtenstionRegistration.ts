@@ -101,7 +101,7 @@ export class ExtensionRegistrationService {
     guestConnection: any,
     appExtensionId: string,
   ): Promise<{ Assets: Asset[]; remainingSelectionCount: number }> {
-    return guestConnection.host.api.contentSelectContentAddOns.openDialog(
+    return guestConnection.host.api.contentSelectContentExtension.openDialog(
       appExtensionId,
     );
   }
@@ -117,7 +117,7 @@ export class ExtensionRegistrationService {
     assets: Asset[],
     extensionId: string,
   ) {
-    return guestConnection.host.api.contentSelectContentDialog.setSelectedAssets(
+    return guestConnection.host.api.contentSelectContentExtension.setSelectedAssets(
       assets,
       extensionId,
     );
