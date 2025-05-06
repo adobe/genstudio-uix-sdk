@@ -10,9 +10,8 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { ExperienceService, ExperienceError } from '../../../src/types/experience/ExperienceService';
-import { RightPanelApi } from '../../../src/types/RightPanel/RightPanel';
 import { GuestUI } from '@adobe/uix-guest';
+import { RightPanelService, RightPanelError, RightPanelApi } from '../../../src/types/RightPanel/RightPanel';
 import { GenerationContext } from '../../../src/types/generationContext/GenerationContext';
 
 const createMockConnection = (getExperiencesMock?: jest.Mock, getGenerationContextMock?: jest.Mock) => ({
@@ -26,7 +25,7 @@ const createMockConnection = (getExperiencesMock?: jest.Mock, getGenerationConte
   }
 } as unknown as GuestUI<RightPanelApi>);
 
-describe('ExperienceService', () => {
+describe('RightPanelService', () => {
   beforeEach(() => {
     jest.spyOn(console, 'error').mockImplementation(() => {});
   });
@@ -51,7 +50,7 @@ describe('ExperienceService', () => {
 
   describe('convertRawExperienceToExperience', () => {
     it('should convert raw experience to Experience format', () => {
-      const result = ExperienceService.convertRawExperienceToExperience(mockRawExperience);
+      const result = RightPanelService.convertRawExperienceToExperience(mockRawExperience);
 
       expect(result.id).toBe('exp123');
       expect(result.experienceFields.name).toEqual({
@@ -65,14 +64,14 @@ describe('ExperienceService', () => {
     });
 
     it('should handle missing id', () => {
-      const result = ExperienceService.convertRawExperienceToExperience({
+      const result = RightPanelService.convertRawExperienceToExperience({
         fields: mockRawExperience.fields
       });
       expect(result.id).toBe('');
     });
 
     it('should handle null field values', () => {
-      const result = ExperienceService.convertRawExperienceToExperience({
+      const result = RightPanelService.convertRawExperienceToExperience({
         id: 'exp123',
         fields: { nullField: null }
       });
@@ -80,7 +79,7 @@ describe('ExperienceService', () => {
     });
 
     it('should handle undefined field values', () => {
-      const result = ExperienceService.convertRawExperienceToExperience({
+      const result = RightPanelService.convertRawExperienceToExperience({
         id: 'exp123',
         fields: { undefinedField: undefined }
       });
@@ -88,7 +87,7 @@ describe('ExperienceService', () => {
     });
 
     it('should handle falsy field values', () => {
-      const result = ExperienceService.convertRawExperienceToExperience({
+      const result = RightPanelService.convertRawExperienceToExperience({
         id: 'exp123',
         fields: { 
           nullField: null,
@@ -110,7 +109,7 @@ describe('ExperienceService', () => {
   describe('convertRawExperiencesToExperiences', () => {
     it('should convert array of raw experiences', () => {
       const rawExperiences = [mockRawExperience, mockRawExperience];
-      const results = ExperienceService.convertRawExperiencesToExperiences(rawExperiences);
+      const results = RightPanelService.convertRawExperiencesToExperiences(rawExperiences);
       
       expect(results).toHaveLength(2);
       expect(results[0].id).toBe('exp123');
@@ -118,7 +117,7 @@ describe('ExperienceService', () => {
     });
 
     it('should handle empty array', () => {
-      const results = ExperienceService.convertRawExperiencesToExperiences([]);
+      const results = RightPanelService.convertRawExperiencesToExperiences([]);
       expect(results).toHaveLength(0);
     });
   });
@@ -128,35 +127,36 @@ describe('ExperienceService', () => {
       const mockGetExperiences = jest.fn().mockResolvedValue([mockRawExperience]);
       const mockConnection = createMockConnection(mockGetExperiences);
 
-      const results = await ExperienceService.getExperiences(mockConnection);
+      const results = await RightPanelService.getExperiences(mockConnection);
       
       expect(results).toHaveLength(1);
       expect(results[0].id).toBe('exp123');
       expect(mockGetExperiences).toHaveBeenCalled();
     });
 
-    it('should throw ExperienceError on API failure', async () => {
+    it('should throw RightPanelError on API failure', async () => {
       const mockGetExperiences = jest.fn().mockRejectedValue(new Error('API Error'));
       const mockConnection = createMockConnection(mockGetExperiences);
 
-      await expect(ExperienceService.getExperiences(mockConnection))
+      await expect(RightPanelService.getExperiences(mockConnection))
         .rejects
-        .toThrow(ExperienceError);
-      await expect(ExperienceService.getExperiences(mockConnection))
+        .toThrow(RightPanelError);
+      await expect(RightPanelService.getExperiences(mockConnection))
         .rejects
         .toThrow('Failed to fetch experiences from host');
     });
 
-    it('should throw ExperienceError if connection is missing', async () => {
+    it('should throw RightPanelError if connection is missing', async () => {
       // @ts-ignore Testing null case explicitly
-      await expect(ExperienceService.getExperiences(null))
+      await expect(RightPanelService.getExperiences(null))
         .rejects
-        .toThrow(ExperienceError);
+        .toThrow(RightPanelError);
       // @ts-ignore Testing null case explicitly  
-      await expect(ExperienceService.getExperiences(null))
+      await expect(RightPanelService.getExperiences(null))
         .rejects
         .toThrow('Connection is required to get experiences');
     });
+
     it('should handle already converted experiences', async () => {
       const mockGetExperiences = jest.fn().mockResolvedValue([{
         id: 'exp123',
@@ -169,7 +169,7 @@ describe('ExperienceService', () => {
       }]);
       const mockConnection = createMockConnection(mockGetExperiences);
 
-      const results = await ExperienceService.getExperiences(mockConnection);
+      const results = await RightPanelService.getExperiences(mockConnection);
       
       expect(results).toHaveLength(1);
       expect(results[0].id).toBe('exp123');
@@ -180,27 +180,27 @@ describe('ExperienceService', () => {
     });
   });
 
-  describe("getGenerationContext", () => {
-    it("should get generation context", async () => {
+  describe('getGenerationContext', () => {
+    it('should get generation context', async () => {
       const mockGetGenerationContext = jest.fn().mockResolvedValue(mockGenerationContext);
       const mockConnection = createMockConnection(undefined, mockGetGenerationContext);
-      const generationContext = await ExperienceService.getGenerationContext(mockConnection);
+      const generationContext = await RightPanelService.getGenerationContext(mockConnection);
       expect(generationContext).toEqual(mockGenerationContext);
     });
 
-    it("should throw GenerationContextError if connection is missing", async () => {
+    it('should throw RightPanelError if connection is missing', async () => {
       const connection = null;
-      await expect(ExperienceService.getGenerationContext(
+      await expect(RightPanelService.getGenerationContext(
         connection as unknown as GuestUI<RightPanelApi>
-      )).rejects.toThrow(new ExperienceError('Connection is required to get generation context'));
+      )).rejects.toThrow(new RightPanelError('Connection is required to get generation context'));
     });
 
-    it("should throw ExperienceError on API failure", async () => {
+    it('should throw RightPanelError on API failure', async () => {
       const mockGetGenerationContext = jest.fn().mockRejectedValue(new Error('API Error'));
       const mockConnection = createMockConnection(undefined, mockGetGenerationContext);
-      await expect(ExperienceService.getGenerationContext(mockConnection))
+      await expect(RightPanelService.getGenerationContext(mockConnection))
         .rejects
-        .toThrow(new ExperienceError('Failed to get generation context'));
+        .toThrow(new RightPanelError('Failed to get generation context'));
     });
   });
 });
