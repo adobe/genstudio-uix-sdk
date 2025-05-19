@@ -114,37 +114,9 @@ example:
 
 ***
 
-### openSelectContentDialog()
+### selectContentExtensionSetSelectedAssets()
 
-> `static` **openSelectContentDialog**(`guestConnection`: `any`, `appExtensionId`: `string`): `Promise`\<\{ `Assets`: [`Asset`](../type-aliases/Asset.md)[]; `remainingSelectionCount`: `number`; \}\>
-
-open the content select content add ons dialog
-
-#### Parameters
-
-##### guestConnection
-
-`any`
-
-the guest connection
-
-##### appExtensionId
-
-`string`
-
-the app extension id
-
-#### Returns
-
-`Promise`\<\{ `Assets`: [`Asset`](../type-aliases/Asset.md)[]; `remainingSelectionCount`: `number`; \}\>
-
-the selected assets and the total count of left assets
-
-***
-
-### setSelectContentSelectedAssets()
-
-> `static` **setSelectContentSelectedAssets**(`guestConnection`: `any`, `assets`: [`Asset`](../type-aliases/Asset.md)[], `extensionId`: `string`): `any`
+> `static` **selectContentExtensionSetSelectedAssets**(`guestConnection`: `any`, `extensionId`: `string`, `assets`: [`Asset`](../type-aliases/Asset.md)[]): `any`
 
 set the selected assets
 
@@ -156,18 +128,40 @@ set the selected assets
 
 the guest connection
 
-##### assets
-
-[`Asset`](../type-aliases/Asset.md)[]
-
-the selected assets
-
 ##### extensionId
 
 `string`
 
 the extension id of the content select content add ons, this id will be used to identify the content select content add ons
 
+##### assets
+
+[`Asset`](../type-aliases/Asset.md)[]
+
+the selected assets
+
 #### Returns
 
 `any`
+
+***
+
+### selectContentExtensionSync()
+
+> `static` **selectContentExtensionSync**(`guestConnection`: `any`): `Promise`\<\{ `selectedAssets`: [`Asset`](../type-aliases/Asset.md)[]; `selectionLimit`: `number`; \}\>
+
+sync the selected assets
+
+#### Parameters
+
+##### guestConnection
+
+`any`
+
+the guest connection
+
+#### Returns
+
+`Promise`\<\{ `selectedAssets`: [`Asset`](../type-aliases/Asset.md)[]; `selectionLimit`: `number`; \}\>
+
+the selected assets and the total count of left assets

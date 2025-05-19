@@ -6,7 +6,7 @@
 
 # Type Alias: Asset
 
-> **Asset**: \{ `id`: `string`; `location`: `string`; `metadata`: [`AssetMetadata`](AssetMetadata.md); `name`: `string`; `source`: `string`; `thumbnailUrl`: `string`; `url`: `string`; \}
+> **Asset**: \{ `id`: `string`; `metadata`: [`AssetMetadata`](AssetMetadata.md); `name`: `string`; `signedUrl`: `string`; `source`: `string`; `sourceUrl`: `string`; \}
 
 Represents an Asset entity in the Experience.
 
@@ -16,10 +16,6 @@ Represents an Asset entity in the Experience.
 
 > **id**: `string`
 
-### location
-
-> **location**: `string`
-
 ### metadata?
 
 > `optional` **metadata**: [`AssetMetadata`](AssetMetadata.md)
@@ -28,14 +24,14 @@ Represents an Asset entity in the Experience.
 
 > **name**: `string`
 
+### signedUrl
+
+> **signedUrl**: `string`
+
 ### source
 
 > **source**: `string`
 
-### thumbnailUrl
+### sourceUrl
 
-> **thumbnailUrl**: `string`
-
-### url
-
-> **url**: `string`
+> **sourceUrl**: `string`

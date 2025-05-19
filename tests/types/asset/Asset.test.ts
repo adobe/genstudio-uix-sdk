@@ -18,19 +18,15 @@ describe("Asset", () => {
     const asset: Asset = {
       id: "asset-123",
       name: "Test Asset",
-      url: "https://example.com/assets/test.jpg",
-      thumbnailUrl: "https://example.com/assets/test-thumb.jpg",
-      location: "https://example.com/assets/test.jpg",
+      signedUrl: "https://example.com/assets/test.jpg",
+      sourceUrl: "https://example.com/assets/test.jpg",
       source: "bynder",
     };
 
     expect(asset.id).toBe("asset-123");
     expect(asset.name).toBe("Test Asset");
-    expect(asset.url).toBe("https://example.com/assets/test.jpg");
-    expect(asset.thumbnailUrl).toBe(
-      "https://example.com/assets/test-thumb.jpg",
-    );
-    expect(asset.location).toBe("https://example.com/assets/test.jpg");
+    expect(asset.signedUrl).toBe("https://example.com/assets/test.jpg");
+    expect(asset.sourceUrl).toBe("https://example.com/assets/test.jpg");
     expect(asset.source).toBe("bynder");
     expect(asset.metadata).toBeUndefined();
   });
@@ -47,9 +43,8 @@ describe("Asset", () => {
     const asset: Asset = {
       id: "asset-123",
       name: "Test Asset with Metadata",
-      url: "https://example.com/assets/test.jpg",
-      thumbnailUrl: "https://example.com/assets/test-thumb.jpg",
-      location: "https://example.com/assets/test.jpg",
+      signedUrl: "https://example.com/assets/test.jpg",
+      sourceUrl: "https://example.com/assets/test.jpg",
       source: "bynder",
       metadata,
     };
