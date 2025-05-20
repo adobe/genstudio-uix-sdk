@@ -118,5 +118,4 @@ export class ExtensionRegistrationService {
   ): Promise<{ selectedAssets: Asset[], selectionLimit: number }> {
     return guestConnection.host.api.selectContentExtension.sync();
   }
-  
 }
