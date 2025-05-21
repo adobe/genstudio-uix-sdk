@@ -92,34 +92,30 @@ export class ExtensionRegistrationService {
   //************************************
 
   /**
-   * open the content select content add ons dialog
+   * set the selected assets
    * @param guestConnection - the guest connection
-   * @param appExtensionId - the app extension id
-   * @returns the selected assets and the total count of left assets
+   * @param extensionId - the extension id of the content select content add ons, this id will be used to identify the content select content add ons
+   * @param assets - the selected assets
    */
-  static openSelectContentDialog(
+  static selectContentExtensionSetSelectedAssets(
     guestConnection: any,
-    appExtensionId: string,
-  ): Promise<{ Assets: Asset[]; remainingSelectionCount: number }> {
-    return guestConnection.host.api.contentSelectContentAddOns.openDialog(
-      appExtensionId,
+    extensionId: string,
+    assets: Asset[],
+  ) {
+    return guestConnection.host.api.selectContentExtension.setSelectedAssets(
+      extensionId,
+      assets,
     );
   }
 
   /**
-   * set the selected assets
+   * sync the selected assets
    * @param guestConnection - the guest connection
-   * @param assets - the selected assets
-   * @param extensionId - the extension id of the content select content add ons, this id will be used to identify the content select content add ons
+   * @returns the selected assets and the total count of left assets
    */
-  static setSelectContentSelectedAssets(
+  static selectContentExtensionSync(
     guestConnection: any,
-    assets: Asset[],
-    extensionId: string,
-  ) {
-    return guestConnection.host.api.contentSelectContentDialog.setSelectedAssets(
-      assets,
-      extensionId,
-    );
+  ): Promise<{ selectedAssets: Asset[], selectionLimit: number }> {
+    return guestConnection.host.api.selectContentExtension.sync();
   }
 }

@@ -31,4 +31,4 @@ export {
 export {
   ExtensionRegistrationService,
   ExtensionRegistrationError,
-} from "./types/extensionRegistration/ExtenstionRegistration";
+} from "./types/extensionRegistration/ExtensionRegistration";

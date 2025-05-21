@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 
 import { GuestUI } from "@adobe/uix-guest";
 import { VirtualApi } from "@adobe/uix-core";
-import { ExtensionRegistrationService } from "../extensionRegistration/ExtenstionRegistration";
+import { ExtensionRegistrationService } from "../extensionRegistration/ExtensionRegistration";
 import { AdditionalContext, AdditionalContextTypes, GenerationContext } from "./GenerationContext";
 
 export interface CreateApi extends VirtualApi {

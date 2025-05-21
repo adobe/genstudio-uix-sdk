@@ -4,34 +4,10 @@
 
 [@adobe/genstudio-uix-sdk](../globals.md) / AppMetaData
 
-# Type Alias: AppMetaData
+# Type Alias: ~~AppMetaData~~
 
-> **AppMetaData**: \{ `accounts`: [`Account`](Account.md)[]; `extensionId`: `string`; `iconDataUri`: `string`; `id`: `string`; `label`: `string`; `supportedChannels`: [`Channel`](Channel.md)[]; \}
+> **AppMetaData**: [`AppMetadata`](AppMetadata.md)
 
-App MetaData
+## Deprecated
 
-## Type declaration
-
-### accounts?
-
-> `optional` **accounts**: [`Account`](Account.md)[]
-
-### extensionId
-
-> **extensionId**: `string`
-
-### iconDataUri
-
-> **iconDataUri**: `string`
-
-### id
-
-> **id**: `string`
-
-### label
-
-> **label**: `string`
-
-### supportedChannels
-
-> **supportedChannels**: [`Channel`](Channel.md)[]
+This type is deprecated. Please use AppMetadata instead.

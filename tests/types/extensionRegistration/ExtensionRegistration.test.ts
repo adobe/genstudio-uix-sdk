@@ -13,11 +13,11 @@ governing permissions and limitations under the License.
 import {
   ExtensionRegistrationService,
   ExtensionRegistrationError,
-} from "../../../src/types/extensionRegistration/ExtenstionRegistration";
+} from "../../../src/types/extensionRegistration/ExtensionRegistration";
 import { Asset } from "../../../src/types/asset/Asset";
 
 describe("ExtensionRegistrationService", () => {
-  const mockAppExtensionId = "test-extension-id";
+  const mockExtensionId = "test-extension-id";
 
   describe("openCreateAddOnBar", () => {
     it("should support opening the add on bar", async () => {
@@ -33,11 +33,11 @@ describe("ExtensionRegistrationService", () => {
 
       await ExtensionRegistrationService.openCreateAddOnBar(
         mockGuestConnection,
-        mockAppExtensionId,
+        mockExtensionId,
       );
 
       expect(mockGuestConnection.host.api.dialogs.open).toHaveBeenCalledWith(
-        mockAppExtensionId,
+        mockExtensionId,
       );
     });
   });
@@ -55,12 +55,12 @@ describe("ExtensionRegistrationService", () => {
       };
       await ExtensionRegistrationService.openAddContextAddOnBar(
         mockGuestConnection,
-        mockAppExtensionId,
+        mockExtensionId,
       );
 
       expect(
         mockGuestConnection.host.api.dialogs_context.open,
-      ).toHaveBeenCalledWith(mockAppExtensionId);
+      ).toHaveBeenCalledWith(mockExtensionId);
     });
   });
 
@@ -85,44 +85,20 @@ describe("ExtensionRegistrationService", () => {
     });
   });
 
-  describe("openSelectContentDialog", () => {
-    it("should support opening the select content dialog", async () => {
-      const mockGuestConnection = {
-        host: {
-          api: {
-            contentSelectContentAddOns: {
-              openDialog: jest.fn().mockResolvedValue(undefined),
-            },
-          },
-        },
-      };
-      await ExtensionRegistrationService.openSelectContentDialog(
-        mockGuestConnection,
-        mockAppExtensionId,
-      );
-
-      expect(
-        mockGuestConnection.host.api.contentSelectContentAddOns.openDialog,
-      ).toHaveBeenCalledWith(mockAppExtensionId);
-    });
-  });
-
-  describe("setSelectContentSelectedAssets", () => {
+  describe("Select Content Extension", () => {
     const mockAssets: Asset[] = [
       {
         id: "asset1",
         name: "Asset 1",
-        url: "https://example.com/asset1",
-        thumbnailUrl: "https://example.com/asset1/thumbnail",
-        location: "location1",
+        signedUrl: "https://example.com/asset1",
+        sourceUrl: "https://example.com/asset1",
         source: "source1"
       },
       {
         id: "asset2",
         name: "Asset 2",
-        url: "https://example.com/asset2",
-        thumbnailUrl: "https://example.com/asset2/thumbnail",
-        location: "location2",
+        signedUrl: "https://example.com/asset2",
+        sourceUrl: "https://example.com/asset2",
         source: "source2"
       },
     ];
@@ -131,20 +107,38 @@ describe("ExtensionRegistrationService", () => {
       const mockGuestConnection = {
         host: {
           api: {
-            contentSelectContentDialog: {
+            selectContentExtension: {
               setSelectedAssets: jest.fn().mockResolvedValue(undefined),
             },
           },
         },
       };
-      await ExtensionRegistrationService.setSelectContentSelectedAssets(
+      await ExtensionRegistrationService.selectContentExtensionSetSelectedAssets(
         mockGuestConnection,
+        mockExtensionId,
         mockAssets,
-        mockAppExtensionId,
       );
       expect(
-        mockGuestConnection.host.api.contentSelectContentDialog.setSelectedAssets,
-      ).toHaveBeenCalledWith(mockAssets, mockAppExtensionId);
+        mockGuestConnection.host.api.selectContentExtension.setSelectedAssets,
+      ).toHaveBeenCalledWith(mockExtensionId, mockAssets);
+    });
+
+    it("should support syncing the selected assets", async () => {
+      const mockGuestConnection = {
+        host: {
+          api: {
+            selectContentExtension: {
+              sync: jest.fn().mockResolvedValue(undefined),
+            },
+          },
+        },
+      };
+      await ExtensionRegistrationService.selectContentExtensionSync(
+        mockGuestConnection,
+      );
+      expect(
+        mockGuestConnection.host.api.selectContentExtension.sync,
+      ).toHaveBeenCalled();
     });
   });
 });
