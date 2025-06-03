@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { Asset, AssetMetadata } from "../../../src/types/asset/Asset";
+import { Asset, AssetMetadata, ExternalAsset } from "../../../src/types/asset/Asset";
 import { Email, Meta } from "../../../src/types/channel/Channel";
 
 describe("Asset", () => {
@@ -92,5 +92,27 @@ describe("AssetMetadata", () => {
     expect(metadata.region).toHaveLength(0);
     expect(metadata.language).toHaveLength(0);
     expect(metadata.keywords).toHaveLength(0);
+  });
+});
+
+describe("ExternalAsset", () => {
+  it("should create an ExternalAsset with required properties", () => {
+    const asset: ExternalAsset = {
+      extensionId: "extension-123",
+      asset: {
+        id: "asset-123",
+        name: "Test Asset",
+        signedUrl: "https://example.com/assets/test.jpg",
+        sourceUrl: "https://example.com/assets/test.jpg",
+        source: "bynder",
+      },
+    };
+
+    expect(asset.extensionId).toBe("extension-123");
+    expect(asset.asset.id).toBe("asset-123");
+    expect(asset.asset.name).toBe("Test Asset");
+    expect(asset.asset.signedUrl).toBe("https://example.com/assets/test.jpg");
+    expect(asset.asset.sourceUrl).toBe("https://example.com/assets/test.jpg");
+    expect(asset.asset.source).toBe("bynder");
   });
 });
