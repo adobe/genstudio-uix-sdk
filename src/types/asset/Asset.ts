@@ -31,3 +31,8 @@ export type AssetMetadata = {
   language: string[];
   keywords: string[];
 };
+
+export type ExternalAsset = {
+  extensionId: string;
+  asset: Asset;
+};
