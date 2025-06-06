@@ -34,5 +34,5 @@ export type AssetMetadata = {
 
 export type ExternalAsset = {
   extensionId: string;
-  asset: Asset;
+  assets: Asset[];
 };
