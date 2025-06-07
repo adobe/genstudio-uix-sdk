@@ -13,7 +13,7 @@ governing permissions and limitations under the License.
 import {
   Asset,
   AssetMetadata,
-  ExternalAsset,
+  ExternalAssetSelection,
 } from "../../../src/types/asset/Asset";
 import { Email, Meta } from "../../../src/types/channel/Channel";
 
@@ -99,9 +99,9 @@ describe("AssetMetadata", () => {
   });
 });
 
-describe("ExternalAsset", () => {
-  it("should create an ExternalAsset with required properties", () => {
-    const asset: ExternalAsset = {
+describe("ExternalAssetSelection", () => {
+  it("should create an ExternalAssetSelection with required properties", () => {
+    const asset: ExternalAssetSelection = {
       extensionId: "extension-123",
       assets: [
         {
