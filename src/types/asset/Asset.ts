@@ -32,7 +32,7 @@ export type AssetMetadata = {
   keywords: string[];
 };
 
-export type ExternalAsset = {
+export type ExternalAssetSelection = {
   extensionId: string;
-  asset: Asset;
+  assets: Asset[];
 };

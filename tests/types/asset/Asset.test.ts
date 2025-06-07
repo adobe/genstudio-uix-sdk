@@ -10,7 +10,11 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { Asset, AssetMetadata, ExternalAsset } from "../../../src/types/asset/Asset";
+import {
+  Asset,
+  AssetMetadata,
+  ExternalAssetSelection,
+} from "../../../src/types/asset/Asset";
 import { Email, Meta } from "../../../src/types/channel/Channel";
 
 describe("Asset", () => {
@@ -95,24 +99,30 @@ describe("AssetMetadata", () => {
   });
 });
 
-describe("ExternalAsset", () => {
-  it("should create an ExternalAsset with required properties", () => {
-    const asset: ExternalAsset = {
+describe("ExternalAssetSelection", () => {
+  it("should create an ExternalAssetSelection with required properties", () => {
+    const asset: ExternalAssetSelection = {
       extensionId: "extension-123",
-      asset: {
-        id: "asset-123",
-        name: "Test Asset",
-        signedUrl: "https://example.com/assets/test.jpg",
-        sourceUrl: "https://example.com/assets/test.jpg",
-        source: "bynder",
-      },
+      assets: [
+        {
+          id: "asset-123",
+          name: "Test Asset",
+          signedUrl: "https://example.com/assets/test.jpg",
+          sourceUrl: "https://example.com/assets/test.jpg",
+          source: "bynder",
+        },
+      ],
     };
 
     expect(asset.extensionId).toBe("extension-123");
-    expect(asset.asset.id).toBe("asset-123");
-    expect(asset.asset.name).toBe("Test Asset");
-    expect(asset.asset.signedUrl).toBe("https://example.com/assets/test.jpg");
-    expect(asset.asset.sourceUrl).toBe("https://example.com/assets/test.jpg");
-    expect(asset.asset.source).toBe("bynder");
+    expect(asset.assets[0].id).toBe("asset-123");
+    expect(asset.assets[0].name).toBe("Test Asset");
+    expect(asset.assets[0].signedUrl).toBe(
+      "https://example.com/assets/test.jpg",
+    );
+    expect(asset.assets[0].sourceUrl).toBe(
+      "https://example.com/assets/test.jpg",
+    );
+    expect(asset.assets[0].source).toBe("bynder");
   });
 });
