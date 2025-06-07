@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { Asset } from "../asset/Asset";
+import type { Asset, ExternalAssetSelection } from "../asset/Asset";
 
 export class ExtensionRegistrationError extends Error {
   constructor(message: string) {
@@ -113,9 +113,11 @@ export class ExtensionRegistrationService {
    * @param guestConnection - the guest connection
    * @returns the selected assets and the total count of left assets
    */
-  static selectContentExtensionSync(
-    guestConnection: any,
-  ): Promise<{ selectedAssets: Asset[], selectionLimit: number }> {
+  static selectContentExtensionSync(guestConnection: any): Promise<{
+    selectedAssets: Asset[];
+    selectedExternalAssets: ExternalAssetSelection;
+    selectionLimit: number;
+  }> {
     return guestConnection.host.api.selectContentExtension.sync();
   }
 }
