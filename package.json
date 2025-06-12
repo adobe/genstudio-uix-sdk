@@ -1,7 +1,7 @@
 {
-  "name": "@adobe/genstudio-uix-sdk",
+  "name": "@adobe/genstudio-extensibility-sdk",
   "version": "1.0.2",
-  "description": "GenStudio UI Extensibility SDK",
+  "description": "GenStudio Extensibility SDK",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=9.0.0"
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adobe/genstudio-uix-sdk.git"
+    "url": "git+https://github.com/adobe/genstudio-extensibility-sdk.git"
   },
   "directories": {
     "doc": "doc",

@@ -6,7 +6,7 @@
     "hideGenerator": true,
     "disableSources": true,
     "navigationLinks": {
-        "Home": "https://opensource.adobe.com/genstudio-uix-sdk/"
+        "Home": "https://opensource.adobe.com/genstudio-extensibility-sdk/"
     },
     "expandObjects": true,
     "expandParameters": true,
