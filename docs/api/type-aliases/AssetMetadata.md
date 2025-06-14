@@ -1,8 +1,8 @@
-[**@adobe/genstudio-uix-sdk**](../README.md)
+[**@adobe/genstudio-extensibility-sdk**](../README.md)
 
 ***
 
-[@adobe/genstudio-uix-sdk](../globals.md) / AssetMetadata
+[@adobe/genstudio-extensibility-sdk](../globals.md) / AssetMetadata
 
 # Type Alias: AssetMetadata
 
