@@ -1,8 +1,8 @@
-[**@adobe/genstudio-uix-sdk**](../README.md)
+[**@adobe/genstudio-extensibility-sdk**](../README.md)
 
 ***
 
-[@adobe/genstudio-uix-sdk](../globals.md) / Persona
+[@adobe/genstudio-extensibility-sdk](../globals.md) / Persona
 
 # Type Alias: Persona
 

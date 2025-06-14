@@ -1,8 +1,8 @@
-[**@adobe/genstudio-uix-sdk**](README.md)
+[**@adobe/genstudio-extensibility-sdk**](README.md)
 
 ***
 
-# @adobe/genstudio-uix-sdk
+# @adobe/genstudio-extensibility-sdk
 
 ## Enumerations
 
@@ -37,6 +37,7 @@
 - [Brand](type-aliases/Brand.md)
 - [Channel](type-aliases/Channel.md)
 - [Claim](type-aliases/Claim.md)
+- [ExternalAssetSelection](type-aliases/ExternalAssetSelection.md)
 - [GenerationContext](type-aliases/GenerationContext.md)
 - [Persona](type-aliases/Persona.md)
 - [Product](type-aliases/Product.md)
